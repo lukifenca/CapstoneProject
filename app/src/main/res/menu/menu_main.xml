@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_Dashboard"
+        android:icon="@drawable/icondashboard"
+        android:title="Dashboard" />
+    <item
+        android:id="@+id/menu_Scan"
+        android:icon="@drawable/iconscan"
+        android:title="Scan" />
+    <item
+        android:id="@+id/menu_Log"
+        android:icon="@drawable/iconlog"
+        android:title="Log" />
+</menu>
