@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,7 +21,7 @@
         android:layout_margin="50dp" />
 
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fl_shadow_container"
         android:background="@drawable/bg_overlay"
         android:layout_width="match_parent"
@@ -29,16 +30,20 @@
 
         <TextView
             android:id="@+id/tv_auto_image_slider"
-            android:layout_width="match_parent"
+            android:layout_width="372dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="25dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="60dp"
+            android:inputType="textMultiLine"
             android:padding="6dp"
+            android:text="Kami Hadir Untuk Membantu Mengontrol Makanan Anda"
             android:textColor="#FFF"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textSize="36sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

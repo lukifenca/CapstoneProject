@@ -21,7 +21,7 @@ class UserActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.menu_Dashboard -> {
                     fragment = DashboardFragment.newInstance()
-                    supportFragmentManager.beginTransaction().replace(R.id.container, fragment)
+                    supportFragmentManager.beginTransaction().replace(R.id.layoutAplaahhhh, fragment)
                         .commit()
                     return@OnNavigationItemSelectedListener true
                 }

@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <color name="primary">#4fc3f7</color>
+    <color name="primary_light">#8bf6ff</color>
+    <color name="primary_dark">#0093c4</color>
+
+    <color name="confirm">#66bb6a</color>
+
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>

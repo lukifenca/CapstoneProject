@@ -1,5 +1,6 @@
 package com.lukitor.myapplicationC
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
@@ -35,20 +36,26 @@ class GetStartedHomeActivity : AppCompatActivity() {
         sliderView.isAutoCycle = true
         sliderView.startAutoCycle()
         addNewItem()
+
+        binding.btnGetStarted.setOnClickListener{
+            val intentt= Intent(this,ActivityFormInput::class.java)
+            startActivity(intentt)
+            finish()
+        }
     }
 
     fun addNewItem() {
         val sliderItem = SliderItem()
-        sliderItem.description = "Get Started 1"
-        sliderItem.image= R.drawable.gambar1_50
+        sliderItem.description = "Bergabunglah Bersama Kami"
+        sliderItem.image= R.drawable.gambar1m_1080x1920
         adapter.addItem(sliderItem)
         val sliderItem2 = SliderItem()
-        sliderItem2.description = "Get Started 2"
-        sliderItem2.image= R.drawable.gambar2_50
+        sliderItem2.description = "Kami Hadir Untuk Membantu Mengontrol Makanan Anda"
+        sliderItem2.image= R.drawable.gambar3m_1080x1920
         adapter.addItem(sliderItem2)
         val sliderItem3 = SliderItem()
-        sliderItem3.description = "Get Started 3"
-        sliderItem3.image= R.drawable.gambar3_50
+        sliderItem3.description = "Daftarkan Dirimu Sekarang !"
+        sliderItem3.image= R.drawable.gambar1m_1080x1920
         adapter.addItem(sliderItem3)
     }
 }

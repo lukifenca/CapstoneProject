@@ -70,7 +70,6 @@ open class SliderAdapter constructor(context: Context): SliderViewAdapter<Slider
         val sliderItem = mSliderItems[position]
 
         viewHolder!!.textViewDescription.setText(sliderItem.description)
-        viewHolder!!.textViewDescription.textSize = 16f
         viewHolder!!.textViewDescription.setTextColor(Color.WHITE)
         viewHolder.imageViewBackground.setImageResource(sliderItem.image!!)
         viewHolder!!.itemView.setOnClickListener { Toast.makeText(context, "This is item in position $position", Toast.LENGTH_SHORT).show() }

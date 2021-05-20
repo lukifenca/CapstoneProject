@@ -2,10 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layoutAplaahhhh"
+    android:id="@+id/layoutFormBodyMass"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActivityFormInput">
+    tools:context=".ActivityFormMedis">
 
     <TextView
         android:id="@+id/textView4"
@@ -14,7 +14,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:fontFamily="serif"
-        android:text="Isi Data Dirimu"
+        android:text="Isi Data Kesehatanmu"
         android:textColor="#393939"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,21 +30,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txtFieldNama"
+
+        android:id="@+id/txtTekananDarah"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="358dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:hint="Nama Lengkap"
+        android:hint="Tekanan Darah Sys/Dia (mmHg)"
         app:errorEnabled="true"
         app:helperText="*Required"
+        app:layout_constraintTop_toBottomOf="@id/textView4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4">
+        tools:layout_editor_absoluteY="228dp">
 
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etNama"
+            android:id="@+id/etTekananDarah"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -52,44 +53,21 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txtUmur"
+
+        android:id="@+id/txtInputKolesterolLDL"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="358dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:hint="Umur"
+        android:hint="Kolesterol LDL(mg/dL)"
         app:errorEnabled="true"
         app:helperText="*Required"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtFieldNama">
+        app:layout_constraintTop_toBottomOf="@id/txtTekananDarah">
 
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etUmur"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="number" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-
-        android:id="@+id/txtEmail"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="358dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:hint="Email"
-        app:errorEnabled="true"
-        app:helperText="*Required"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtUmur">
-
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etEmail"
+            android:id="@+id/etKolesterolLDL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -97,59 +75,141 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txtInputTinggiBadan"
+
+        android:id="@+id/txtInputKolesterolHDL"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="175dp"
+        android:layout_width="358dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:hint="TB (cm)"
+        android:hint="Kolesterol HDL(mg/dL)"
         app:errorEnabled="true"
         app:helperText="*Required"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEmail">
+        app:layout_constraintTop_toBottomOf="@id/txtInputKolesterolLDL">
 
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etTinggiBadan"
+            android:id="@+id/etKolesterolHDL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txtInputBeratBadan"
+
+        android:id="@+id/txtInputKolesterolTrigli"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="175dp"
+        android:layout_width="358dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:hint="BB (kg)"
+        android:layout_marginStart="16dp"
+        android:hint="Kolesterol Trigliserida(mg/dL)"
         app:errorEnabled="true"
         app:helperText="*Required"
-        app:layout_constraintStart_toEndOf="@+id/txtInputTinggiBadan"
-        app:layout_constraintTop_toBottomOf="@+id/txtEmail">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtInputKolesterolHDL">
 
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etBeratBadan"
+            android:id="@+id/etKolesterolTrigli"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:id="@+id/txtInputGulaDarah"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="358dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:hint="Gula Darah Puasa (mg/dL)"
+        app:errorEnabled="true"
+        app:helperText="*Required"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtInputKolesterolTrigli">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etGulaDarah"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:id="@+id/txtInputTinggiBadan"-->
+<!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--        android:layout_width="175dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:hint="TB (cm)"-->
+<!--        app:errorEnabled="true"-->
+<!--        app:helperText="Required"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/txtInputKolesterol">-->
+
+
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:id="@+id/etTinggiBadan"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:ems="10"-->
+<!--            android:inputType="number" />-->
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:id="@+id/txtInputBeratBadan"-->
+<!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--        android:layout_width="175dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:hint="BB (kg)"-->
+<!--        app:errorEnabled="true"-->
+<!--        app:helperText="Required"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/txtInputTinggiBadan"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/txtInputKolesterol">-->
+
+
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:id="@+id/etBeratBadan"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:ems="10"-->
+<!--            android:inputType="number" />-->
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_NextToBM"
+        android:id="@+id/fab_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/arrow_back"
+        app:backgroundTint="@color/primary"
+        app:borderWidth="0dp"
+        app:layout_anchor="@id/layoutFormBodyMass"
+        app:layout_anchorGravity="end|bottom|right"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:maxImageSize="28dp"
+        app:tint="@null" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:src="@drawable/arrow_next"
-        app:backgroundTint="@color/primary"
+        android:src="@drawable/arrow_check"
+        app:backgroundTint="@color/confirm"
         app:borderWidth="0dp"
-        app:layout_anchor="@id/layoutAplaahhhh"
+        app:layout_anchor="@id/layoutFormBodyMass"
         app:layout_anchorGravity="end|bottom|right"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
