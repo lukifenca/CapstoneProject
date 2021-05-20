@@ -37,11 +37,11 @@ class GetStartedHomeActivity : AppCompatActivity() {
         sliderView.startAutoCycle()
         addNewItem()
 
-        binding.btnGetStarted.setOnClickListener{
-            val intentt= Intent(this,ActivityFormInput::class.java)
-            startActivity(intentt)
-            finish()
-        }
+//        binding.btnGetStarted.setOnClickListener{
+//            val intentt= Intent(this,ActivityFormInput::class.java)
+//            startActivity(intentt)
+//            finish()
+//        }
     }
 
     fun addNewItem() {
