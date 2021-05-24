@@ -10,7 +10,7 @@
         android:icon="@drawable/iconscan"
         android:title="Scan" />
     <item
-        android:id="@+id/menu_Log"
-        android:icon="@drawable/iconlog"
-        android:title="Log" />
+        android:id="@+id/menu_Close"
+        android:icon="@drawable/ic_baseline_close_24"
+        android:title="Close" />
 </menu>
