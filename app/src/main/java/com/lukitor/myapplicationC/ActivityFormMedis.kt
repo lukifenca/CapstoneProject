@@ -7,17 +7,25 @@ import android.text.Editable
 import android.text.TextWatcher
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import com.lukitor.myapplicationC.data.room.database.UserDatabase
+import com.lukitor.myapplicationC.data.room.entity.Users
 import com.lukitor.myapplicationC.databinding.ActivityFormMedisBinding
+import com.lukitor.myapplicationC.viewmodel.UserViewModel
+import com.lukitor.myapplicationC.viewmodel.ViewModelFactory
+import java.util.concurrent.Executors
 
 class ActivityFormMedis : AppCompatActivity() {
 
     lateinit var binding:ActivityFormMedisBinding
+    private lateinit var userViewModel: UserViewModel
     var dataDiri = HashMap<String, String>()
     var dataMedis = HashMap<String, String>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityFormMedisBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        userViewModel=obtainViewModel(this@ActivityFormMedis)
         binding.pgFormIdentity.progress=100
         if(intent.hasExtra("data"))dataDiri=intent.getSerializableExtra("data") as HashMap<String, String>
         if(intent.hasExtra("medis")){
@@ -152,6 +160,14 @@ class ActivityFormMedis : AppCompatActivity() {
                 binding.txtTekananDarah.isErrorEnabled = true
                 binding.txtTekananDarah.error = "Field Ini Harus Diisi !"
             }
+            if (!binding.etTekananDarah.text!!.isEmpty()) {
+                var tekananDarah:List<String> = binding.etTekananDarah.text.toString().split("/")
+                if(tekananDarah.size<2){
+                    status = false
+                    binding.txtTekananDarah.isErrorEnabled = true
+                    binding.txtTekananDarah.error = "Format pengisian Salah"
+                }
+            }
             if (binding.etKolesterolHDL.text!!.isEmpty()) {
                 status = false
                 binding.txtInputKolesterolHDL.isErrorEnabled = true
@@ -180,6 +196,21 @@ class ActivityFormMedis : AppCompatActivity() {
                     .setCancelable(false)
                     .setPositiveButton("Yes") {
                             dialog: DialogInterface, _: Int ->
+
+
+                        var tekananDarah:List<String> = binding.etTekananDarah.text.toString().split("/")
+                        val users = Users(dataDiri["nama"]!!,
+                            dataDiri["umur"]!!,dataDiri["email"]!!,
+                        dataDiri["tinggi"]!!.toInt(),dataDiri["berat"]!!.toInt(),
+                            tekananDarah[0].toInt(),tekananDarah[1].toInt(),
+                            binding.etKolesterolLDL.text.toString().toInt(),
+                            binding.etKolesterolHDL.text.toString().toInt(),
+                            binding.etKolesterolTrigli.text.toString().toInt(),
+                            binding.etGulaDarah.text.toString().toInt()
+                        )
+                        Executors.newSingleThreadExecutor().execute(Runnable {
+                            UserDatabase.getInstance(this@ActivityFormMedis).userDao().insertUsers(users) //replace with your code
+                        })
                         var intentt=Intent(this,UserActivity::class.java)
                         startActivity(intentt)
                         finish()
@@ -199,5 +230,10 @@ class ActivityFormMedis : AppCompatActivity() {
         intentKirim.putExtra("data", dataDiri)
         startActivity(intentKirim)
         finish()
+    }
+
+    private fun obtainViewModel(activity: AppCompatActivity): UserViewModel {
+        val factory = ViewModelFactory.getInstance(activity.application)
+        return ViewModelProvider(activity, factory).get(UserViewModel::class.java)
     }
 }

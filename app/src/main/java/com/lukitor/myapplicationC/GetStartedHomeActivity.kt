@@ -3,9 +3,14 @@ package com.lukitor.myapplicationC
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.lukitor.myapplicationC.databinding.ActivityGetStartedHomeBinding
+import com.lukitor.myapplicationC.data.room.database.UserDatabase
+import com.lukitor.myapplicationC.data.room.entity.Users
+import com.lukitor.myapplicationC.viewmodel.UserViewModel
+import com.lukitor.myapplicationC.viewmodel.ViewModelFactory
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
@@ -15,12 +20,18 @@ class GetStartedHomeActivity : AppCompatActivity() {
     lateinit var sliderView: SliderView
     lateinit var adapter: SliderAdapter
     lateinit var binding: ActivityGetStartedHomeBinding
+
+    private lateinit var userDatabase: UserDatabase
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGetStartedHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         supportActionBar!!.hide()
+        val mainViewModel = obtainViewModel(this@GetStartedHomeActivity)
+        mainViewModel.getUser().observe(this, usersObserver)
+
 
         sliderView = binding.imageSlider
         adapter=SliderAdapter(this)
@@ -57,5 +68,18 @@ class GetStartedHomeActivity : AppCompatActivity() {
         sliderItem3.description = "Daftarkan Dirimu Sekarang !"
         sliderItem3.image= R.drawable.gambar1m_1080x1920
         adapter.addItem(sliderItem3)
+    }
+
+
+    private fun obtainViewModel(activity: AppCompatActivity): UserViewModel {
+        val factory = ViewModelFactory.getInstance(activity.application)
+        return ViewModelProvider(activity, factory).get(UserViewModel::class.java)
+    }
+
+    private val usersObserver = Observer<Users> { users ->
+        if (users != null) {
+            var intentt= Intent(this,UserActivity::class.java)
+            startActivity(intentt)
+        }
     }
 }
