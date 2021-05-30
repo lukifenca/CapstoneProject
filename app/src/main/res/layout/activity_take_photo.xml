@@ -6,4 +6,44 @@
     android:layout_height="match_parent"
     tools:context=".ActivityTakePhoto">
 
+    <ImageView
+        android:id="@+id/gambarHasil"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="4dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/avatar" />
+
+    <Button
+        android:id="@+id/btnGallery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Gallery"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gambarHasil" />
+
+    <Button
+        android:id="@+id/btnCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Camera"
+        app:layout_constraintEnd_toStartOf="@+id/btnSendPhoto"
+        app:layout_constraintStart_toEndOf="@+id/btnGallery"
+        app:layout_constraintTop_toBottomOf="@+id/gambarHasil" />
+
+    <Button
+        android:id="@+id/btnSendPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Send"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gambarHasil" />
 </androidx.constraintlayout.widget.ConstraintLayout>
