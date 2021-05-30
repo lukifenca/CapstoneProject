@@ -11,29 +11,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CapstoneProject">
-        <activity android:name=".ActivityFormMedis"></activity>
+        <activity android:name=".ActivityTakePhoto"></activity>
+        <activity android:name=".ActivityFormMedis" />
         <activity
             android:name=".ProfileActivity"
-            android:theme="@style/SplassScreenCustom1"></activity>
+            android:theme="@style/SplassScreenCustom1" />
         <activity
             android:name=".UserActivity"
             android:theme="@style/SplassScreenCustom1">
 
-<!--             <intent-filter>-->
-<!--             <action android:name="android.intent.action.MAIN" />-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
 
 
-<!--             <category android:name="android.intent.category.LAUNCHER" />-->
-<!--             </intent-filter>-->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity android:name=".ActivityFormInput">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
-        <activity android:name=".GetStartedHomeActivity" >
+        <activity android:name=".GetStartedHomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

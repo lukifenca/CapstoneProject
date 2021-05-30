@@ -36,6 +36,8 @@ class UserActivity : AppCompatActivity() {
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.menu_Scan -> {
+                    val intent= Intent(this@UserActivity,ActivityTakePhoto::class.java)
+                    startActivity(intent)
 //                    fragment = DataFragment.newInstance("Movie")
 //                    supportFragmentManager.beginTransaction().replace(R.id.container, fragment)
 //                        .commit()
