@@ -7,7 +7,6 @@
     android:fitsSystemWindows="false">
 
 
-
     <LinearLayout
         android:id="@+id/mykonten"
         android:layout_width="340dp"
@@ -20,9 +19,21 @@
         android:elevation="4dp"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingTop="60dp">
+        android:paddingTop="5dp">
+
+        <ImageView
+            android:id="@+id/imgClose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:paddingRight="5dp"
+            android:paddingBottom="30dp"
+            android:scaleType="fitEnd"
+            app:srcCompat="@drawable/icon_cancel" />
 
         <TextView
+            android:id="@+id/txtEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="serif"
@@ -32,7 +43,7 @@
             android:textSize="22sp" />
 
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/et1"
             android:layout_width="300dp"
             android:layout_height="30dp"
             android:layout_marginTop="10dp"
@@ -45,7 +56,7 @@
             android:paddingEnd="10dp" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/et2"
             android:layout_width="300dp"
             android:layout_height="30dp"
             android:layout_marginTop="10dp"
@@ -58,7 +69,7 @@
             android:paddingEnd="10dp" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/et3"
             android:layout_width="300dp"
             android:layout_height="30dp"
             android:layout_marginTop="10dp"
@@ -184,7 +195,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/txtProfileNama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -212,7 +223,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5">
+                    app:layout_constraintTop_toBottomOf="@+id/txtProfileNama">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -241,7 +252,7 @@
                             android:textSize="16sp" />
 
                         <TextView
-                            android:id="@+id/textView25"
+                            android:id="@+id/txtProfileBerat"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -279,7 +290,7 @@
                             android:textSize="16sp" />
 
                         <TextView
-                            android:id="@+id/textView26"
+                            android:id="@+id/txtProfileTinggi"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -317,7 +328,7 @@
                             android:textSize="16sp" />
 
                         <TextView
-                            android:id="@+id/textView27"
+                            android:id="@+id/txtProfileUmur"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"

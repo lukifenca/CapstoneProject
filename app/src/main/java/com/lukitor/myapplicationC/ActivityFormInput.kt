@@ -166,7 +166,7 @@ class ActivityFormInput : AppCompatActivity() {
 
             if (status) {
                 dataDiri["nama"] = binding.etNama.text.toString()
-                dataDiri["umur"] = binding.etNama.text.toString()
+                dataDiri["umur"] = binding.etUmur.text.toString()
                 dataDiri["email"] = binding.etEmail.text.toString()
                 dataDiri["berat"] = binding.etBeratBadan.text.toString()
                 dataDiri["tinggi"] = binding.etTinggiBadan.text.toString()

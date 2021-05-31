@@ -80,7 +80,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
                         <TextView
-                            android:id="@+id/textView7"
+                            android:id="@+id/txtDashboardLemak"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
@@ -102,11 +102,11 @@
                             android:text="gram"
                             android:textColor="#000000"
                             android:textSize="14sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView7"
+                            app:layout_constraintStart_toEndOf="@+id/txtDashboardLemak"
                             app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
                         <TextView
-                            android:id="@+id/textView8"
+                            android:id="@+id/txtPersenLemak"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
@@ -115,17 +115,17 @@
                             android:text="50% Lebih Rendah"
                             android:textColor="#000000"
                             android:textSize="12sp"
-                            app:layout_constraintStart_toEndOf="@+id/imageView5"
-                            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                            app:layout_constraintStart_toEndOf="@+id/imgDashboardLemak"
+                            app:layout_constraintTop_toBottomOf="@+id/txtDashboardLemak" />
 
                         <ImageView
-                            android:id="@+id/imageView5"
+                            android:id="@+id/imgDashboardLemak"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="5dp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView7"
+                            app:layout_constraintTop_toBottomOf="@+id/txtDashboardLemak"
                             app:srcCompat="@drawable/arrowdown" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -173,7 +173,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
 
                         <TextView
-                            android:id="@+id/textView11"
+                            android:id="@+id/txtDashboardGaram"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
@@ -195,11 +195,11 @@
                             android:text="gram"
                             android:textColor="#000000"
                             android:textSize="14sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView11"
+                            app:layout_constraintStart_toEndOf="@+id/txtDashboardGaram"
                             app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
                         <TextView
-                            android:id="@+id/textView12"
+                            android:id="@+id/txtPersenGaram"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
@@ -208,17 +208,17 @@
                             android:text="50% Lebih Rendah"
                             android:textColor="#000000"
                             android:textSize="12sp"
-                            app:layout_constraintStart_toEndOf="@+id/imageView6"
-                            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+                            app:layout_constraintStart_toEndOf="@+id/imgDashboardGaram"
+                            app:layout_constraintTop_toBottomOf="@+id/txtDashboardGaram" />
 
                         <ImageView
-                            android:id="@+id/imageView6"
+                            android:id="@+id/imgDashboardGaram"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="5dp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView11"
+                            app:layout_constraintTop_toBottomOf="@+id/txtDashboardGaram"
                             app:srcCompat="@drawable/arrowdown" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -373,7 +373,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
 
                         <TextView
-                            android:id="@+id/textView14"
+                            android:id="@+id/txtDashboardKalori"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
@@ -395,11 +395,11 @@
                             android:text="kal"
                             android:textColor="#000000"
                             android:textSize="14sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView14"
+                            app:layout_constraintStart_toEndOf="@+id/txtDashboardKalori"
                             app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
                         <TextView
-                            android:id="@+id/textView18"
+                            android:id="@+id/txtPersenKalori"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
@@ -408,17 +408,17 @@
                             android:text="50% Lebih Tinggi"
                             android:textColor="#000000"
                             android:textSize="12sp"
-                            app:layout_constraintStart_toEndOf="@+id/imageView7"
-                            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+                            app:layout_constraintStart_toEndOf="@+id/imgDashboardKalori"
+                            app:layout_constraintTop_toBottomOf="@+id/txtDashboardKalori" />
 
                         <ImageView
-                            android:id="@+id/imageView7"
+                            android:id="@+id/imgDashboardKalori"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="5dp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView14"
+                            app:layout_constraintTop_toBottomOf="@+id/txtDashboardKalori"
                             app:srcCompat="@drawable/arrowup" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -466,7 +466,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/constraintLayout5" />
 
                         <TextView
-                            android:id="@+id/textView20"
+                            android:id="@+id/txtDashboardGula"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
@@ -488,11 +488,11 @@
                             android:text="gram"
                             android:textColor="#000000"
                             android:textSize="14sp"
-                            app:layout_constraintStart_toEndOf="@+id/textView20"
+                            app:layout_constraintStart_toEndOf="@+id/txtDashboardGula"
                             app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
                         <TextView
-                            android:id="@+id/textView22"
+                            android:id="@+id/txtPersenGula"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
@@ -501,17 +501,17 @@
                             android:text="50% Lebih Tinggi"
                             android:textColor="#000000"
                             android:textSize="12sp"
-                            app:layout_constraintStart_toEndOf="@+id/imageView10"
-                            app:layout_constraintTop_toBottomOf="@+id/textView20" />
+                            app:layout_constraintStart_toEndOf="@+id/imgDashboardGula"
+                            app:layout_constraintTop_toBottomOf="@+id/txtDashboardGula" />
 
                         <ImageView
-                            android:id="@+id/imageView10"
+                            android:id="@+id/imgDashboardGula"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_marginStart="10dp"
                             android:layout_marginTop="5dp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView20"
+                            app:layout_constraintTop_toBottomOf="@+id/txtDashboardGula"
                             app:srcCompat="@drawable/arrowup" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>

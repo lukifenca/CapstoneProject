@@ -15,34 +15,34 @@ data class Users (
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "nama")
-    val nama : String,
+    var nama : String,
 
     @ColumnInfo(name = "umur")
-    val umur : String,
+    var umur : String,
 
     @ColumnInfo(name = "email")
-    val email : String,
+    var email : String,
 
     @ColumnInfo(name = "tinggi")
-    val tinggi : Int,
+    var tinggi : Int,
 
     @ColumnInfo(name = "berat")
-    val berat : Int,
+    var berat : Int,
 
     @ColumnInfo(name = "sistolik")
-    val sistolik : Int,
+    var sistolik : Int,
 
     @ColumnInfo(name = "diastolik")
-    val diastolik : Int,
+    var diastolik : Int,
 
     @ColumnInfo(name = "LDL")
-    val LDL : Int,
+    var LDL : Int,
 
     @ColumnInfo(name = "HDL")
-    val HDL : Int,
+    var HDL : Int,
 
     @ColumnInfo(name = "trigliserida")
-    val trigliserida : Int,
+    var trigliserida : Int,
 
     @ColumnInfo(name = "gula")
-    val Gula : Int, ):Parcelable
+    var Gula : Int, ):Parcelable

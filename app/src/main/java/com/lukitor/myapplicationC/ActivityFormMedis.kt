@@ -2,18 +2,25 @@ package com.lukitor.myapplicationC
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.lukitor.myapplicationC.data.room.database.UserDatabase
+import com.lukitor.myapplicationC.data.room.entity.Nutrients
 import com.lukitor.myapplicationC.data.room.entity.Users
 import com.lukitor.myapplicationC.databinding.ActivityFormMedisBinding
 import com.lukitor.myapplicationC.viewmodel.UserViewModel
 import com.lukitor.myapplicationC.viewmodel.ViewModelFactory
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 import java.util.concurrent.Executors
+import kotlin.collections.HashMap
 
 class ActivityFormMedis : AppCompatActivity() {
 
@@ -21,6 +28,7 @@ class ActivityFormMedis : AppCompatActivity() {
     private lateinit var userViewModel: UserViewModel
     var dataDiri = HashMap<String, String>()
     var dataMedis = HashMap<String, String>()
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityFormMedisBinding.inflate(layoutInflater)
@@ -208,8 +216,13 @@ class ActivityFormMedis : AppCompatActivity() {
                             binding.etKolesterolTrigli.text.toString().toInt(),
                             binding.etGulaDarah.text.toString().toInt()
                         )
+                        val current = LocalDateTime.now()
+                        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                        val formatted = current.format(formatter)
+                        val nutrients = Nutrients(formatted,0,0,0,0)
                         Executors.newSingleThreadExecutor().execute(Runnable {
                             UserDatabase.getInstance(this@ActivityFormMedis).userDao().insertUsers(users) //replace with your code
+                            UserDatabase.getInstance(this@ActivityFormMedis).userDao().insertNutrient(nutrients) //replace with your code
                         })
                         var intentt=Intent(this,UserActivity::class.java)
                         startActivity(intentt)
