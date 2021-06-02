@@ -7,7 +7,10 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
 import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.graphics.ImageDecoder
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -18,12 +21,16 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import com.lukitor.myapplicationC.databinding.ActivityTakePhotoBinding
+import com.lukitor.myapplicationC.ml.Model
 import com.lukitor.myapplicationC.retrofit.ApiConfig
 import com.lukitor.myapplicationC.retrofit.ResponseApiModel
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import org.tensorflow.lite.DataType
+import org.tensorflow.lite.support.image.TensorImage
+import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -56,6 +63,9 @@ class ActivityTakePhoto : AppCompatActivity() {
         setContentView(binding.root)
         tempUri=null
         supportActionBar!!.hide()
+
+        val filename = "label.txt"
+        val labels = application.assets.open(filename).bufferedReader().use { it.readText() }.split("\n")
 
         binding.btnGallery.setOnClickListener{
             var intent=Intent(Intent.ACTION_GET_CONTENT)
@@ -98,9 +108,38 @@ class ActivityTakePhoto : AppCompatActivity() {
                 }
             }
         }
-        binding.btnSendPhoto.setOnClickListener{
-            sendPhoto(tempUri,filegambarcamera)
-            filegambarcamera=null
+        binding.btnPredict.setOnClickListener{
+//            sendPhoto(tempUri,filegambarcamera)
+//            filegambarcamera=null
+            var bitmap = drawableToBitmap(binding.gambarHasil.drawable)
+            var resized=Bitmap.createScaledBitmap(bitmap!!,299,299,true)
+            val model = Model.newInstance(this)
+
+            Log.d("Model",resized.width.toString())
+
+            // Creates inputs for reference.
+            val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 299, 299, 3), DataType.FLOAT32)
+
+            var tensorImage= TensorImage(DataType.FLOAT32)
+            tensorImage.load(resized)
+            var byteBuffer1 = tensorImage.buffer
+
+
+//            var tbuffer= TensorImage.fromBitmap(resized)
+//            var byteBuffer = tbuffer.buffer
+
+            inputFeature0.loadBuffer(byteBuffer1)
+
+            // Runs model inference and gets result.
+            val outputs = model.process(inputFeature0)
+            val outputFeature0 = outputs.outputFeature0AsTensorBuffer
+
+            var max=getmax(outputFeature0.floatArray)
+
+            binding.txtHasilPredict.text=labels[max]
+
+            // Releases model resources if no longer used.
+            model.close()
         }
 
 
@@ -240,5 +279,37 @@ class ActivityTakePhoto : AppCompatActivity() {
         // Save a file: path for use with ACTION_VIEW intents
         picturePath = image_.absolutePath
         return image_
+    }
+
+    fun getmax(arr:FloatArray):Int {
+        var ind =0
+        var min = 0.0f
+        for (i in 0..19)
+        {
+            if(arr[i]>min){
+                ind=i
+                min=arr[i]
+            }
+        }
+        return ind
+
+    }
+
+    fun drawableToBitmap(drawable: Drawable): Bitmap? {
+        if (drawable is BitmapDrawable) {
+            return drawable.bitmap
+        }
+        var width = drawable.intrinsicWidth
+        width = if (width > 0) width else 1
+        var height = drawable.intrinsicHeight
+        height = if (height > 0) height else 1
+        val bitmap = Bitmap.createBitmap(
+            width, height,
+            Bitmap.Config.ARGB_8888
+        )
+        val canvas = Canvas(bitmap)
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight())
+        drawable.draw(canvas)
+        return bitmap
     }
 }
