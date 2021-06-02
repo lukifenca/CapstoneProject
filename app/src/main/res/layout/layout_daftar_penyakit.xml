@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3c415f">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="-20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginEnd="15dp"
+                android:fontFamily="serif"
+                android:text="Daftar Penyakit Berbahaya Jika Kita Tidak Memperhatikan Konsumsi Makanan Kita"
+                android:textAlignment="center"
+                android:textColor="#FFFDFD"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:id="@+id/linearLayoutkolestrol"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="176dp"
+                    android:layout_height="185dp"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginEnd="15dp"
+                    app:srcCompat="@drawable/fryfood" />
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_weight="1"
+                    android:fontFamily="serif"
+                    android:text="Kolesterol adalah lemak yang berguna bagi tubuh. Namun bila kadarnya di dalam tubuh terlalu tinggi, kolesterol akan menumpuk di pembuluh darah dan mengganggu aliran darah."
+                    android:textAlignment="viewStart"
+                    android:textColor="#FFFDFD"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView27"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:text="Kolestrol"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:id="@+id/linearLayoutdiabetes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textViewsweet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_weight="1"
+                    android:fontFamily="serif"
+                    android:text="Diabetes adalah penyakit kronis atau yang berlangsung jangka panjang yang ditandai dengan meningkatnya kadar gula darah (glukosa) hingga di atas nilai normal. Ada dua jenis utama diabetes, yaitu diabetes tipe 1 dan tipe 2."
+                    android:textAlignment="viewStart"
+                    android:textColor="#FFFDFD"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/imageViewsweet"
+                    android:layout_width="176dp"
+                    android:layout_height="185dp"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginEnd="15dp"
+                    app:srcCompat="@drawable/sweetfood" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView29"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:text="Diabetes"
+                android:textAlignment="textEnd"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:id="@+id/linearLayouthipertesi"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageViewhipertensi"
+                    android:layout_width="176dp"
+                    android:layout_height="185dp"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginEnd="15dp"
+                    app:srcCompat="@drawable/saltfood" />
+
+                <TextView
+                    android:id="@+id/textViewhipertesi"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_weight="1"
+                    android:fontFamily="serif"
+                    android:text="Hipertensi atau tekanan darah tinggi adalah kondisi ketika tekanan darah di 130/80 mmHg atau lebih. Jika tidak segera ditangani, hipertensi bisa menyebabkan munculnya penyakit-penyakit serius yang mengancam nyawa, seperti gagal jantung, penyakit ginjal, dan stroke."
+                    android:textAlignment="viewStart"
+                    android:textColor="#FFFDFD"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView33"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:text="Hipertensi / Darah Tinggi"
+                android:textAlignment="viewStart"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,17 +2,13 @@ package com.lukitor.myapplicationC
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
-import android.opengl.Visibility
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat.startActivity
 import com.smarteist.autoimageslider.SliderViewAdapter
 
 
@@ -49,9 +45,13 @@ open class SliderAdapter constructor(context: Context): SliderViewAdapter<Slider
         var textViewDescription: TextView
         var btnStart: Button
         var layout:ConstraintLayout
+        var layoutWhy:ConstraintLayout
+        var layoutPenyakit:ConstraintLayout
 
         init {
             layout= itemVieww.findViewById(R.id.layout11111)
+            layoutWhy= itemVieww.findViewById(R.id.layoutWhy)
+            layoutPenyakit= itemVieww.findViewById(R.id.layoutPenyakit)
             imagelogo= itemVieww.findViewById(R.id.imageViewLogoAwal)
             imageViewBackground = itemVieww.findViewById(R.id.iv_auto_image_slider)
             imageGifContainer = itemVieww.findViewById(R.id.iv_gif_container)
@@ -85,14 +85,29 @@ open class SliderAdapter constructor(context: Context): SliderViewAdapter<Slider
 
         if(position==2){
             viewHolder!!.layout.visibility=View.VISIBLE
+            viewHolder!!.layoutWhy.visibility=View.GONE
+            viewHolder!!.layoutPenyakit.visibility=View.GONE
         }
-        else viewHolder!!.layout.visibility=View.GONE
+        else if(position==3){
+            viewHolder!!.layoutWhy.visibility=View.VISIBLE
+            viewHolder!!.layout.visibility=View.GONE
+            viewHolder!!.layoutPenyakit.visibility=View.GONE
+        }
+        else if(position==4){
+            viewHolder!!.layoutPenyakit.visibility=View.VISIBLE
+            viewHolder!!.layout.visibility=View.GONE
+            viewHolder!!.layoutWhy.visibility=View.GONE
+        }
+        else {
+            viewHolder!!.layout.visibility=View.GONE
+            viewHolder!!.layoutWhy.visibility=View.GONE
+            viewHolder!!.layoutPenyakit.visibility=View.GONE
+        }
 
-        if(position!=3){viewHolder!!.btnStart.visibility = View.GONE}
+        if(position!=5){viewHolder!!.btnStart.visibility = View.GONE}
         else viewHolder!!.btnStart.visibility=View.VISIBLE
 
         viewHolder!!.textViewDescription.setText(sliderItem.description)
-        viewHolder!!.textViewDescription.setTextColor(Color.WHITE)
         viewHolder.imageViewBackground.setImageResource(sliderItem.image!!)
         viewHolder.btnStart.setOnClickListener {
             val intentt= Intent(context,ActivityFormInput::class.java)

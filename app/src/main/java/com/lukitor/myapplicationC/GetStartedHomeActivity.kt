@@ -6,9 +6,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.lukitor.myapplicationC.databinding.ActivityGetStartedHomeBinding
 import com.lukitor.myapplicationC.data.room.database.UserDatabase
 import com.lukitor.myapplicationC.data.room.entity.Users
+import com.lukitor.myapplicationC.databinding.ActivityGetStartedHomeBinding
 import com.lukitor.myapplicationC.viewmodel.UserViewModel
 import com.lukitor.myapplicationC.viewmodel.ViewModelFactory
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
@@ -57,11 +57,11 @@ class GetStartedHomeActivity : AppCompatActivity() {
 
     fun addNewItem() {
         val sliderItem = SliderItem()
-        sliderItem.description = "Bergabunglah Bersama Kami"
+        sliderItem.description = "Selamat Datang di Health Inspector\nBergabunglah Bersama Kami"
         sliderItem.image= R.drawable.gambar1m_1080x1920
         adapter.addItem(sliderItem)
         val sliderItem2 = SliderItem()
-        sliderItem2.description = "Kami Hadir Untuk Membantu Mengontrol Makanan Anda"
+        sliderItem2.description = "Kami Hadir Untuk Membantu Mengontrol Makanan & Kesehatan Anda"
         sliderItem2.image= R.drawable.gambar3m_1080x1920
         adapter.addItem(sliderItem2)
         val sliderItem3 = SliderItem()
@@ -69,9 +69,17 @@ class GetStartedHomeActivity : AppCompatActivity() {
         sliderItem3.image= R.drawable.gambar3m_1080x1920
         adapter.addItem(sliderItem3)
         val sliderItem4 = SliderItem()
-        sliderItem4.description = "Daftarkan Dirimu Sekarang !"
-        sliderItem4.image= R.drawable.gambar1m_1080x1920
+        sliderItem4.description = ""
+        sliderItem4.image= R.drawable.gambar3m_1080x1920
         adapter.addItem(sliderItem4)
+        val sliderItem5 = SliderItem()
+        sliderItem5.description = ""
+        sliderItem5.image= R.drawable.gambar3m_1080x1920
+        adapter.addItem(sliderItem5)
+        val sliderItem6 = SliderItem()
+        sliderItem6.description = "Daftarkan Dirimu Sekarang !"
+        sliderItem6.image= R.drawable.gambar1m_1080x1920
+        adapter.addItem(sliderItem6)
     }
 
 
