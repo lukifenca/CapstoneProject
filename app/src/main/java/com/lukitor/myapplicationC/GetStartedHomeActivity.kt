@@ -65,9 +65,13 @@ class GetStartedHomeActivity : AppCompatActivity() {
         sliderItem2.image= R.drawable.gambar3m_1080x1920
         adapter.addItem(sliderItem2)
         val sliderItem3 = SliderItem()
-        sliderItem3.description = "Daftarkan Dirimu Sekarang !"
-        sliderItem3.image= R.drawable.gambar1m_1080x1920
+        sliderItem3.description = ""
+        sliderItem3.image= R.drawable.gambar3m_1080x1920
         adapter.addItem(sliderItem3)
+        val sliderItem4 = SliderItem()
+        sliderItem4.description = "Daftarkan Dirimu Sekarang !"
+        sliderItem4.image= R.drawable.gambar1m_1080x1920
+        adapter.addItem(sliderItem4)
     }
 
 

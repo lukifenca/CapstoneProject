@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat.startActivity
 import com.smarteist.autoimageslider.SliderViewAdapter
 
@@ -47,8 +48,10 @@ open class SliderAdapter constructor(context: Context): SliderViewAdapter<Slider
         var imagelogo: ImageView
         var textViewDescription: TextView
         var btnStart: Button
+        var layout:ConstraintLayout
 
         init {
+            layout= itemVieww.findViewById(R.id.layout11111)
             imagelogo= itemVieww.findViewById(R.id.imageViewLogoAwal)
             imageViewBackground = itemVieww.findViewById(R.id.iv_auto_image_slider)
             imageGifContainer = itemVieww.findViewById(R.id.iv_gif_container)
@@ -80,8 +83,14 @@ open class SliderAdapter constructor(context: Context): SliderViewAdapter<Slider
         if(position==0)viewHolder!!.imagelogo.visibility=View.VISIBLE
         else viewHolder!!.imagelogo.visibility=View.GONE
 
-        if(position!=2){viewHolder!!.btnStart.visibility = View.GONE}
+        if(position==2){
+            viewHolder!!.layout.visibility=View.VISIBLE
+        }
+        else viewHolder!!.layout.visibility=View.GONE
+
+        if(position!=3){viewHolder!!.btnStart.visibility = View.GONE}
         else viewHolder!!.btnStart.visibility=View.VISIBLE
+
         viewHolder!!.textViewDescription.setText(sliderItem.description)
         viewHolder!!.textViewDescription.setTextColor(Color.WHITE)
         viewHolder.imageViewBackground.setImageResource(sliderItem.image!!)
@@ -90,6 +99,6 @@ open class SliderAdapter constructor(context: Context): SliderViewAdapter<Slider
             context.startActivity(intentt)
         }
 
-        viewHolder!!.itemView.setOnClickListener { Toast.makeText(context, "This is item in position $position", Toast.LENGTH_SHORT).show() }
+        viewHolder!!.itemView.setOnClickListener { }
     }
 }
