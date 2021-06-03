@@ -17,13 +17,22 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
+import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
+import com.lukitor.myapplicationC.data.room.entity.Nutrients
 import com.lukitor.myapplicationC.databinding.ActivityTakePhotoBinding
 import com.lukitor.myapplicationC.ml.Model
 import com.lukitor.myapplicationC.retrofit.ApiConfig
 import com.lukitor.myapplicationC.retrofit.ResponseApiModel
+import com.lukitor.myapplicationC.viewmodel.UserViewModel
+import com.lukitor.myapplicationC.viewmodel.ViewModelFactory
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -38,11 +47,16 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 
 class ActivityTakePhoto : AppCompatActivity() {
-
+    var maxGaram: Int = 5; var maxGula: Int = 50; var maxLemak: Int = 67; var maxKalori: Int = 0;
+    var dailyGaram: Int = 0; var dailyGula: Int = 0; var dailyLemak: Int = 0; var dailyKalori: Int = 0;
+    var tempGaram: Int = 0; var tempGula: Int = 0; var tempLemak: Int = 0; var tempKalori: Int = 0;
+    private lateinit var viewModel: UserViewModel
     lateinit var binding:ActivityTakePhotoBinding
     lateinit var bitmap: Bitmap
     var tempUri :Uri? = null
@@ -61,9 +75,21 @@ class ActivityTakePhoto : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTakePhotoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.layoutHasil.visibility = View.GONE
         tempUri=null
-        supportActionBar!!.hide()
-
+        val anim:Animation = AnimationUtils.loadAnimation(this,R.anim.fromsmall)
+        if (intent.extras != null){
+            maxKalori = intent.extras!!.getInt("maxKalori")
+            dailyGaram = intent.extras!!.getInt("dailyGaram")
+            dailyLemak = intent.extras!!.getInt("dailyLemak")
+            dailyGula = intent.extras!!.getInt("dailyGula")
+            dailyKalori = intent.extras!!.getInt("dailyKalori")
+        }
+        binding.btnBack.setOnClickListener{view ->
+            val intent= Intent(this,UserActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.transition.bottom_up, R.transition.nothing)
+            finish()}
         val filename = "label.txt"
         val labels = application.assets.open(filename).bufferedReader().use { it.readText() }.split("\n")
 
@@ -140,6 +166,9 @@ class ActivityTakePhoto : AppCompatActivity() {
 
             // Releases model resources if no longer used.
             model.close()
+            ChangeData()
+            binding.layoutHasil.visibility = View.VISIBLE
+            binding.layoutHasil.startAnimation(anim)
         }
 
 
@@ -286,6 +315,7 @@ class ActivityTakePhoto : AppCompatActivity() {
         var min = 0.0f
         for (i in 0..19)
         {
+            println(i.toString() +". " + arr[i])
             if(arr[i]>min){
                 ind=i
                 min=arr[i]
@@ -311,5 +341,73 @@ class ActivityTakePhoto : AppCompatActivity() {
         drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight())
         drawable.draw(canvas)
         return bitmap
+    }
+
+    // ChangeData function buat ganti data Nutrisi harian
+    fun ChangeData(){
+        var countKalori :Int  = dailyKalori+tempKalori
+        binding.txtDashboardKalori.text = countKalori.toString() +  "/" + maxKalori.toString()
+        var countGula :Int  = dailyGula+tempGula
+        binding.txtDashboardGula.text = countGula.toString() + "/" + maxGula.toString()
+        var countGaram :Int  = dailyGaram+tempGaram
+        binding.txtDashboardGaram.text = countGaram.toString() + "/" + maxGaram.toString()
+        var countLemak :Int  = dailyLemak+tempLemak
+        binding.txtDashboardLemak.text = countLemak.toString() + "/" + maxLemak.toString()
+        if(countKalori>maxKalori){
+            Glide.with(this).load(R.drawable.arrowup).into(binding.imgDashboardKalori)
+            val Temp: Double = ((countKalori.toDouble()-maxKalori.toDouble())/maxKalori.toDouble()) * 100
+            binding.txtPersenKalori.text = Temp.toInt().toString() +"% Lebih Tinggi"
+        }
+        else{
+            Glide.with(this).load(R.drawable.arrowdown).into(binding.imgDashboardKalori)
+            val Temp: Double = ((maxKalori.toDouble()-countKalori.toDouble())/maxKalori.toDouble()) * 100
+            binding.txtPersenKalori.text = Temp.toInt().toString() +"% Lebih Rendah"
+        }
+        if(countGula>maxGula){
+            Glide.with(this).load(R.drawable.arrowup).into(binding.imgDashboardGula)
+            val Temp: Double = ((countGula.toDouble()-maxGula.toDouble())/maxGula.toDouble()) * 100
+            binding.txtPersenGula.text = Temp.toInt().toString() +"% Lebih Tinggi"
+        }
+        else{
+            Glide.with(this).load(R.drawable.arrowdown).into(binding.imgDashboardGula)
+            val Temp: Double = ((maxGula.toDouble()-countGula.toDouble())/maxGula.toDouble())*100
+            binding.txtPersenGula.text = Temp.toInt().toString() +"% Lebih Rendah"
+        }
+        if(countGaram>maxGaram){
+            Glide.with(this).load(R.drawable.arrowup).into(binding.imgDashboardGaram)
+            val Temp: Double = ((countGaram.toDouble()-maxGaram.toDouble())/maxGaram.toDouble())*100
+            binding.txtPersenGaram.text = Temp.toInt().toString() +"% Lebih Tinggi"
+        }
+        else{
+            Glide.with(this).load(R.drawable.arrowdown).into(binding.imgDashboardGaram)
+            val Temp: Double = ((maxGaram.toDouble()-countGaram.toDouble())/maxGaram.toDouble())*100
+            binding.txtPersenGaram.text = Temp.toInt().toString() +"% Lebih Rendah"
+        }
+        if(countLemak>maxLemak){
+            Glide.with(this).load(R.drawable.arrowup).into(binding.imgDashboardLemak)
+            val Temp: Double = ((countLemak.toDouble()-maxLemak.toDouble())/maxLemak.toDouble())*100
+            binding.txtPersenLemak.text = Temp.toInt().toString() +"% Lebih Tinggi"
+        }
+        else{
+            Glide.with(this).load(R.drawable.arrowdown).into(binding.imgDashboardLemak)
+            val Temp: Double = ((maxLemak.toDouble()-countLemak.toDouble())/maxLemak.toDouble())*100
+            binding.txtPersenLemak.text = Temp.toInt().toString() +"% Lebih Rendah"
+        }
+    }
+
+    // UpdateData function buat update database Nutrients (kalo user setuju)
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun UpdateData(){
+        var countKalori :Int  = dailyKalori+tempKalori
+        var countGula :Int  = dailyGula+tempGula
+        var countGaram :Int  = dailyGaram+tempGaram
+        var countLemak :Int  = dailyLemak+tempLemak
+        val current = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val formatted = current.format(formatter)
+        val dataNutrients = Nutrients(formatted,countKalori,countGaram,countGula,countLemak)
+        val factory = ViewModelFactory.getInstance(application)
+        viewModel = ViewModelProvider(this, factory)[UserViewModel::class.java]
+        viewModel.updateNutrient(dataNutrients)
     }
 }

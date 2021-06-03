@@ -34,12 +34,14 @@
             android:layout_gravity="center"
             android:layout_marginStart="16dp"
             android:layout_marginTop="60dp"
+            android:layout_marginEnd="16dp"
             android:fontFamily="serif"
             android:inputType="textMultiLine"
             android:padding="6dp"
             android:text="Kami Hadir Untuk Membantu Mengontrol Makanan Anda"
             android:textColor="#3c415f"
             android:textSize="36sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

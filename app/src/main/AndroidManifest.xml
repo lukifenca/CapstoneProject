@@ -32,7 +32,8 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provide_paths" />
         </provider>
-        <activity android:name=".ActivityTakePhoto"></activity>
+        <activity android:name=".ActivityTakePhoto"
+            android:theme="@style/SplassScreenCustom1"></activity>
         <activity android:name=".ActivityFormMedis" />
         <activity
             android:name=".ProfileActivity"

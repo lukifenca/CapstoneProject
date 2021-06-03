@@ -21,10 +21,8 @@ import java.time.format.DateTimeFormatter
 class DashboardFragment : Fragment() {
 
     lateinit var binding:FragmentDashboardBinding
-    var maxGaram: Int = 5
-    var maxGula: Int = 50
-    var maxLemak: Int = 67
-    var maxKalori: Double = 0.0
+    var maxGaram: Int = 5; var maxGula: Int = 50; var maxLemak: Int = 67; var maxKalori: Int = 0;
+    var dailyGaram: Int = 0; var dailyGula: Int = 0; var dailyLemak: Int = 0; var dailyKalori: Int = 0;
     private lateinit var data: Users
     private lateinit var dataNutrients: Nutrients
     private lateinit var viewModel: UserViewModel
@@ -46,7 +44,14 @@ class DashboardFragment : Fragment() {
             LoadData()
             binding.buttonToCamera.setOnClickListener{
                 val intent= Intent(activity,ActivityTakePhoto::class.java)
+                intent.putExtra("maxKalori",maxKalori)
+                intent.putExtra("dailyGaram", dailyGaram)
+                intent.putExtra("dailyGula", dailyGula)
+                intent.putExtra("dailyLemak", dailyLemak)
+                intent.putExtra("dailyKalori", dailyKalori)
                 startActivity(intent)
+                requireActivity().overridePendingTransition(R.transition.bottom_up, R.transition.nothing)
+                requireActivity().finish()
             }
         }
     }
@@ -63,7 +68,7 @@ class DashboardFragment : Fragment() {
         viewModel = ViewModelProvider(this, factory)[UserViewModel::class.java]
         viewModel.getUser().observe(viewLifecycleOwner, { courses ->
             data = Users(courses.nama,courses.umur,courses.email,courses.tinggi,courses.berat,courses.sistolik,courses.diastolik,courses.LDL,courses.HDL,courses.trigliserida, courses.Gula)
-            maxKalori = (88.4 + 13.4 * courses.berat.toDouble()) + (4.8 * courses.tinggi.toDouble()) - (5.68 * courses.umur.toDouble())
+            maxKalori = ((88.4 + 13.4 * courses.berat.toDouble()) + (4.8 * courses.tinggi.toDouble()) - (5.68 * courses.umur.toDouble())).toInt()
         })
         viewModel.getNutrient().observe(viewLifecycleOwner, { courses ->
             dataNutrients = Nutrients(courses.tanggal,courses.kalori,courses.garam,courses.gula,courses.lemak)
@@ -88,10 +93,14 @@ class DashboardFragment : Fragment() {
     }
 
     fun ChangeData(){
-        binding.txtDashboardKalori.text = dataNutrients.kalori.toString() + "/" + maxKalori.toString()
+        binding.txtDashboardKalori.text = dataNutrients.kalori.toString() + "/" + maxKalori.toInt().toString()
         binding.txtDashboardGula.text = dataNutrients.gula.toString() + "/" + maxGula.toString()
         binding.txtDashboardGaram.text = dataNutrients.garam.toString() + "/" + maxGaram.toString()
         binding.txtDashboardLemak.text = dataNutrients.lemak.toString() + "/" + maxLemak.toString()
+        dailyGaram = dataNutrients.garam
+        dailyGula = dataNutrients.gula
+        dailyKalori = dataNutrients.kalori
+        dailyLemak = dataNutrients.lemak
         if(dataNutrients.kalori>maxKalori){
             Glide.with(this).load(R.drawable.arrowup).into(binding.imgDashboardKalori)
             val Temp: Double = ((dataNutrients.kalori.toDouble()-maxKalori)/maxKalori) * 100

@@ -8,7 +8,7 @@
     <item
         android:id="@+id/menu_Scan"
         android:icon="@drawable/iconscan"
-        android:title="Scan" />
+        android:title="Upload" />
     <item
         android:id="@+id/menu_Close"
         android:icon="@drawable/ic_baseline_close_24"
