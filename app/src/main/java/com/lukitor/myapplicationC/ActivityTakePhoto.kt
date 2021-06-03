@@ -85,11 +85,8 @@ class ActivityTakePhoto : AppCompatActivity() {
             dailyGula = intent.extras!!.getInt("dailyGula")
             dailyKalori = intent.extras!!.getInt("dailyKalori")
         }
-        binding.btnBack.setOnClickListener{view ->
-            val intent= Intent(this,UserActivity::class.java)
-            startActivity(intent)
-            overridePendingTransition(R.transition.bottom_up, R.transition.nothing)
-            finish()}
+        binding.btnBack.setOnClickListener{view -> finish()
+            overridePendingTransition(R.transition.nothing,R.transition.bottom_down)}
         val filename = "label.txt"
         val labels = application.assets.open(filename).bufferedReader().use { it.readText() }.split("\n")
 

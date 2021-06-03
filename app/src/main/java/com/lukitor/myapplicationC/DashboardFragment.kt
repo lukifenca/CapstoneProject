@@ -40,8 +40,8 @@ class DashboardFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        LoadData()
         if(activity!=null){
-            LoadData()
             binding.buttonToCamera.setOnClickListener{
                 val intent= Intent(activity,ActivityTakePhoto::class.java)
                 intent.putExtra("maxKalori",maxKalori)
@@ -51,7 +51,6 @@ class DashboardFragment : Fragment() {
                 intent.putExtra("dailyKalori", dailyKalori)
                 startActivity(intent)
                 requireActivity().overridePendingTransition(R.transition.bottom_up, R.transition.nothing)
-                requireActivity().finish()
             }
         }
     }
@@ -68,7 +67,8 @@ class DashboardFragment : Fragment() {
         viewModel = ViewModelProvider(this, factory)[UserViewModel::class.java]
         viewModel.getUser().observe(viewLifecycleOwner, { courses ->
             data = Users(courses.nama,courses.umur,courses.email,courses.tinggi,courses.berat,courses.sistolik,courses.diastolik,courses.LDL,courses.HDL,courses.trigliserida, courses.Gula)
-            maxKalori = ((88.4 + 13.4 * courses.berat.toDouble()) + (4.8 * courses.tinggi.toDouble()) - (5.68 * courses.umur.toDouble())).toInt()
+            maxKalori = ((88.4 + 13.4 * courses.berat.toDouble()) + (4.8 * courses.tinggi.toDouble()) - (5.68 * courses.umur.toInt().toDouble())).toInt()
+            println(maxKalori.toString())
         })
         viewModel.getNutrient().observe(viewLifecycleOwner, { courses ->
             dataNutrients = Nutrients(courses.tanggal,courses.kalori,courses.garam,courses.gula,courses.lemak)
@@ -93,7 +93,7 @@ class DashboardFragment : Fragment() {
     }
 
     fun ChangeData(){
-        binding.txtDashboardKalori.text = dataNutrients.kalori.toString() + "/" + maxKalori.toInt().toString()
+        binding.txtDashboardKalori.text = dataNutrients.kalori.toString() + "/" + maxKalori.toString()
         binding.txtDashboardGula.text = dataNutrients.gula.toString() + "/" + maxGula.toString()
         binding.txtDashboardGaram.text = dataNutrients.garam.toString() + "/" + maxGaram.toString()
         binding.txtDashboardLemak.text = dataNutrients.lemak.toString() + "/" + maxLemak.toString()
@@ -103,12 +103,12 @@ class DashboardFragment : Fragment() {
         dailyLemak = dataNutrients.lemak
         if(dataNutrients.kalori>maxKalori){
             Glide.with(this).load(R.drawable.arrowup).into(binding.imgDashboardKalori)
-            val Temp: Double = ((dataNutrients.kalori.toDouble()-maxKalori)/maxKalori) * 100
+            val Temp: Double = ((dataNutrients.kalori.toDouble()-maxKalori.toDouble())/maxKalori.toDouble()) * 100
             binding.txtPersenKalori.text = Temp.toInt().toString() +"% Lebih Tinggi"
         }
         else{
             Glide.with(this).load(R.drawable.arrowdown).into(binding.imgDashboardKalori)
-            val Temp = ((maxKalori-dataNutrients.kalori.toDouble())/maxKalori) * 100
+            val Temp = ((maxKalori.toDouble()-dataNutrients.kalori.toDouble())/maxKalori.toDouble()) * 100
             binding.txtPersenKalori.text = Temp.toInt().toString() +"% Lebih Rendah"
         }
         if(dataNutrients.gula>maxGula){
