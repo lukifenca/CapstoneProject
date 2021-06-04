@@ -22,5 +22,5 @@ class UserRepository (application: Application){
     fun update(users: Users)= usersDao.updateUser(users)
     fun getNutrient():LiveData<Nutrients> = usersDao.getNutrient()
     fun insertNutrient(nutrients: Nutrients)= usersDao.insertNutrient(nutrients)
-    fun updateNutrient(nutrients: Nutrients)= usersDao.updateNutrient(nutrients)
+    fun updateNutrient()= usersDao.updateNutrient()
 }

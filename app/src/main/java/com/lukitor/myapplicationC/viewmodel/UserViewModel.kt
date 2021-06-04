@@ -15,7 +15,7 @@ class UserViewModel(application: Application) : ViewModel()  {
     fun getUser():LiveData<Users> = userRepository.getUser()
     fun getNutrient():LiveData<Nutrients> = userRepository.getNutrient()
     fun insertNutrient(nutrients: Nutrients)= userRepository.insertNutrient(nutrients)
-    fun updateNutrient(nutrients: Nutrients)= userRepository.updateNutrient(nutrients)
+    fun updateNutrient()= userRepository.updateNutrient()
 
 
 }

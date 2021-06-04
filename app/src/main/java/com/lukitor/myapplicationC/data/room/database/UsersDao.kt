@@ -17,6 +17,6 @@ interface UsersDao {
     fun getNutrient(): LiveData<Nutrients>
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertNutrient(nutrients: Nutrients)
-    @Update
-    fun updateNutrient(nutrients: Nutrients)
+    @Query("DELETE FROM nutrients")
+    fun updateNutrient()
 }

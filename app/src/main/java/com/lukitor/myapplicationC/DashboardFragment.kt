@@ -40,9 +40,16 @@ class DashboardFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.progressBar.visibility = View.VISIBLE
+        binding.linearLayout.visibility = View.INVISIBLE
+        binding.linearLayout1.visibility = View.INVISIBLE
         LoadData()
         if(activity!=null){
             binding.buttonToCamera.setOnClickListener{
+                dataNutrients = Nutrients("2021-06-04",1000,0,0,0)
+                viewModel.updateNutrient()
+                viewModel.insertNutrient(dataNutrients)
+                ChangeData()
                 val intent= Intent(activity,ActivityTakePhoto::class.java)
                 intent.putExtra("maxKalori",maxKalori)
                 intent.putExtra("dailyGaram", dailyGaram)
@@ -74,7 +81,6 @@ class DashboardFragment : Fragment() {
             dataNutrients = Nutrients(courses.tanggal,courses.kalori,courses.garam,courses.gula,courses.lemak)
             Starter()
         })
-
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -87,9 +93,13 @@ class DashboardFragment : Fragment() {
         }
         else{
             dataNutrients = Nutrients(formatted,0,0,0,0)
-            viewModel.updateNutrient(dataNutrients)
+            viewModel.updateNutrient()
+            viewModel.insertNutrient(dataNutrients)
             ChangeData()
         }
+        binding.progressBar.visibility = View.GONE
+        binding.linearLayout.visibility = View.VISIBLE
+        binding.linearLayout1.visibility = View.VISIBLE
     }
 
     fun ChangeData(){

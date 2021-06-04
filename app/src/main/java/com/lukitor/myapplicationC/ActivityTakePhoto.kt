@@ -8,7 +8,6 @@ import android.content.pm.PackageManager
 import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import android.graphics.ImageDecoder
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.net.Uri
@@ -36,16 +35,12 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
-import org.tensorflow.lite.DataType
-import org.tensorflow.lite.support.image.TensorImage
-import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
-import java.nio.ByteBuffer
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -447,6 +442,7 @@ class ActivityTakePhoto : AppCompatActivity() {
         val dataNutrients = Nutrients(formatted,countKalori,countGaram,countGula,countLemak)
         val factory = ViewModelFactory.getInstance(application)
         viewModel = ViewModelProvider(this, factory)[UserViewModel::class.java]
-        viewModel.updateNutrient(dataNutrients)
+        viewModel.updateNutrient()
+        viewModel.insertNutrient(dataNutrients)
     }
 }
