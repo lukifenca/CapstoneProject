@@ -28,7 +28,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.lukitor.myapplicationC.data.room.entity.Nutrients
 import com.lukitor.myapplicationC.databinding.ActivityTakePhotoBinding
-import com.lukitor.myapplicationC.ml.Model
 import com.lukitor.myapplicationC.retrofit.ApiConfig
 import com.lukitor.myapplicationC.retrofit.ResponseApiModel
 import com.lukitor.myapplicationC.viewmodel.UserViewModel
@@ -46,6 +45,7 @@ import retrofit2.Response
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
+import java.nio.ByteBuffer
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -64,10 +64,19 @@ class ActivityTakePhoto : AppCompatActivity() {
     var picturePath:String? = null
     var filegambarcamera:File? = null
 
+    private val mInputSize = 299
+    private val mModelPath = "model.tflite"
+    private val mLabelPath = "label.txt"
+    private lateinit var classifier: Classifier
+
     companion object{
         private const val MY_CAMERA_PERMISSION_CODE = 111
         private const val CAMERA_REQUEST = 1888
         private const val GALLERY_REQUEST = 1010
+    }
+
+    private fun initClassifier() {
+        classifier = Classifier(assets, mModelPath, mLabelPath, mInputSize)
     }
 
 
@@ -75,9 +84,12 @@ class ActivityTakePhoto : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTakePhotoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        initClassifier()
         binding.layoutHasil.visibility = View.GONE
         tempUri=null
         val anim:Animation = AnimationUtils.loadAnimation(this,R.anim.fromsmall)
+        val animout:Animation = AnimationUtils.loadAnimation(this,R.anim.tosmall)
         if (intent.extras != null){
             maxKalori = intent.extras!!.getInt("maxKalori")
             dailyGaram = intent.extras!!.getInt("dailyGaram")
@@ -87,8 +99,8 @@ class ActivityTakePhoto : AppCompatActivity() {
         }
         binding.btnBack.setOnClickListener{view -> finish()
             overridePendingTransition(R.transition.nothing,R.transition.bottom_down)}
-        val filename = "label.txt"
-        val labels = application.assets.open(filename).bufferedReader().use { it.readText() }.split("\n")
+//        val filename = "label.txt"
+//        val labels = application.assets.open(filename).bufferedReader().use { it.readText() }.split("\n")
 
         binding.btnGallery.setOnClickListener{
             var intent=Intent(Intent.ACTION_GET_CONTENT)
@@ -132,40 +144,67 @@ class ActivityTakePhoto : AppCompatActivity() {
             }
         }
         binding.btnPredict.setOnClickListener{
-//            sendPhoto(tempUri,filegambarcamera)
-//            filegambarcamera=null
-            var bitmap = drawableToBitmap(binding.gambarHasil.drawable)
-            var resized=Bitmap.createScaledBitmap(bitmap!!,299,299,true)
-            val model = Model.newInstance(this)
+            var bitmapss = drawableToBitmap(binding.gambarHasil.drawable)
+            val result=classifier.recognizeImage(bitmapss!!)
+            if(result.isEmpty()){
+                Log.d("Classifier","Unknown Food")
+                binding.txtApakahMakanan.visibility=View.VISIBLE
+                if(binding.layoutHasil.visibility==View.VISIBLE){
+                    binding.layoutHasil.startAnimation(animout)
+                    binding.layoutHasil.visibility=View.GONE
+                }
+            }
+            else{
+                Log.d("Classifier",result[0].title)
+                binding.txtApakahMakanan.visibility=View.GONE
+                ChangeData()
+                binding.layoutHasil.visibility = View.VISIBLE
+                binding.layoutHasil.startAnimation(anim)
+                binding.txtHasilFoodName.text=result[0].title
+            }
 
-            Log.d("Model",resized.width.toString())
-
-            // Creates inputs for reference.
-            val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 299, 299, 3), DataType.FLOAT32)
-
-            var tensorImage= TensorImage(DataType.FLOAT32)
-            tensorImage.load(resized)
-            var byteBuffer1 = tensorImage.buffer
 
 
-//            var tbuffer= TensorImage.fromBitmap(resized)
-//            var byteBuffer = tbuffer.buffer
 
-            inputFeature0.loadBuffer(byteBuffer1)
 
-            // Runs model inference and gets result.
-            val outputs = model.process(inputFeature0)
-            val outputFeature0 = outputs.outputFeature0AsTensorBuffer
-
-            var max=getmax(outputFeature0.floatArray)
-
-            binding.txtHasilPredict.text=labels[max]
-
-            // Releases model resources if no longer used.
-            model.close()
-            ChangeData()
-            binding.layoutHasil.visibility = View.VISIBLE
-            binding.layoutHasil.startAnimation(anim)
+////            sendPhoto(tempUri,filegambarcamera)
+////            filegambarcamera=null
+//            var bitmap = drawableToBitmap(binding.gambarHasil.drawable)
+////            var resized=Bitmap.createScaledBitmap(bitmap!!,299,299,true)
+//            var resized=Bitmap.createScaledBitmap(bitmap!!,299,299,false)
+//
+//            var classifier=Classifier(assets,"model.tflie","label.txt",299)
+//            val result=classifier.recognizeImage(bitmap)
+//
+//
+//            val model = Model.newInstance(this)
+//
+////            Log.d("Model",resized.width.toString())
+//
+//            // Creates inputs for reference.
+//
+//            val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 299, 299, 3), DataType.FLOAT32)
+//            var tensorImage= TensorImage(DataType.FLOAT32)
+//            tensorImage.load(resized)
+//            var byteBuffer1 = tensorImage.buffer
+//
+//
+//
+//            inputFeature0.loadBuffer(byteBuffer1)
+//
+//            // Runs model inference and gets result.
+//            val outputs = model.process(inputFeature0)
+//            val outputFeature0 = outputs.outputFeature0AsTensorBuffer
+//
+//            var max=getmax(outputFeature0.floatArray)
+//
+//            binding.txtHasilPredict.text=labels[max]
+//
+//            // Releases model resources if no longer used.
+//            model.close()
+//            ChangeData()
+//            binding.layoutHasil.visibility = View.VISIBLE
+//            binding.layoutHasil.startAnimation(anim)
         }
 
 
