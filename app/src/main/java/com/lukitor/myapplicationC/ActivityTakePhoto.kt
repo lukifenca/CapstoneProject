@@ -233,19 +233,22 @@ class ActivityTakePhoto : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == GALLERY_REQUEST) {
-            binding.gambarHasil.setImageURI(data?.data)
-            var uri: Uri? = data?.data
-            if (uri != null) {
-                bitmap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                    val src: ImageDecoder.Source = ImageDecoder.createSource(contentResolver, uri!!)
-                    ImageDecoder.decodeBitmap(src)
-
-                } else {
-                    @Suppress("DEPRECATION")
-                    MediaStore.Images.Media.getBitmap(contentResolver, uri)
-                }
-                tempUri = getImageUri(this@ActivityTakePhoto,bitmap)!!
+            if(data!=null){
+                binding.gambarHasil.setImageURI(data?.data)
             }
+
+//            var uri: Uri? = data?.data
+//            if (uri != null) {
+//                bitmap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+//                    val src: ImageDecoder.Source = ImageDecoder.createSource(contentResolver, uri!!)
+//                    ImageDecoder.decodeBitmap(src)
+//
+//                } else {
+//                    @Suppress("DEPRECATION")
+//                    MediaStore.Images.Media.getBitmap(contentResolver, uri)
+//                }
+//                tempUri = getImageUri(this@ActivityTakePhoto,bitmap)!!
+//            }
         }
 
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
