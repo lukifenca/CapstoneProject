@@ -74,7 +74,7 @@ class DashboardFragment : Fragment() {
             println(maxKalori.toString())
         })
         viewModel.getNutrient().observe(viewLifecycleOwner, { courses ->
-            dataNutrients = Nutrients(courses.tanggal,courses.kalori,courses.garam,courses.gula,courses.lemak)
+            dataNutrients = Nutrients(courses.id,courses.tanggal,courses.kalori,courses.garam,courses.gula,courses.lemak)
             Starter()
         })
     }
@@ -88,7 +88,7 @@ class DashboardFragment : Fragment() {
             ChangeData()
         }
         else{
-            dataNutrients = Nutrients(formatted,0,0,0,0)
+            dataNutrients = Nutrients(1,formatted,0,0,0,0)
             viewModel.updateNutrient(dataNutrients)
             ChangeData()
         }

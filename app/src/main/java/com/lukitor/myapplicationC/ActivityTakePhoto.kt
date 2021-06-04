@@ -439,7 +439,7 @@ class ActivityTakePhoto : AppCompatActivity() {
         val current = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         val formatted = current.format(formatter)
-        val dataNutrients = Nutrients(formatted,countKalori,countGaram,countGula,countLemak)
+        val dataNutrients = Nutrients(1,formatted,countKalori,countGaram,countGula,countLemak)
         val factory = ViewModelFactory.getInstance(application)
         viewModel = ViewModelProvider(this, factory)[UserViewModel::class.java]
         viewModel.updateNutrient(dataNutrients)

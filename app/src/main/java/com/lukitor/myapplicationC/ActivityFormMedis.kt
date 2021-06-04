@@ -219,7 +219,7 @@ class ActivityFormMedis : AppCompatActivity() {
                         val current = LocalDateTime.now()
                         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
                         val formatted = current.format(formatter)
-                        val nutrients = Nutrients(formatted,0,0,0,0)
+                        val nutrients = Nutrients(1,formatted,0,0,0,0)
                         Executors.newSingleThreadExecutor().execute(Runnable {
                             UserDatabase.getInstance(this@ActivityFormMedis).userDao().insertUsers(users) //replace with your code
                             UserDatabase.getInstance(this@ActivityFormMedis).userDao().insertNutrient(nutrients) //replace with your code

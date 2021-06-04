@@ -14,6 +14,9 @@ data class Nutrients (
 
     @PrimaryKey
     @NonNull
+    @ColumnInfo(name = "id")
+    var id : Int,
+
     @ColumnInfo(name = "tanggal")
     var tanggal : String,
 
