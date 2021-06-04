@@ -442,7 +442,6 @@ class ActivityTakePhoto : AppCompatActivity() {
         val dataNutrients = Nutrients(formatted,countKalori,countGaram,countGula,countLemak)
         val factory = ViewModelFactory.getInstance(application)
         viewModel = ViewModelProvider(this, factory)[UserViewModel::class.java]
-        viewModel.updateNutrient()
-        viewModel.insertNutrient(dataNutrients)
+        viewModel.updateNutrient(dataNutrients)
     }
 }

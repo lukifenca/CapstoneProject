@@ -46,10 +46,6 @@ class DashboardFragment : Fragment() {
         LoadData()
         if(activity!=null){
             binding.buttonToCamera.setOnClickListener{
-                dataNutrients = Nutrients("2021-06-04",1000,0,0,0)
-                viewModel.updateNutrient()
-                viewModel.insertNutrient(dataNutrients)
-                ChangeData()
                 val intent= Intent(activity,ActivityTakePhoto::class.java)
                 intent.putExtra("maxKalori",maxKalori)
                 intent.putExtra("dailyGaram", dailyGaram)
@@ -93,8 +89,7 @@ class DashboardFragment : Fragment() {
         }
         else{
             dataNutrients = Nutrients(formatted,0,0,0,0)
-            viewModel.updateNutrient()
-            viewModel.insertNutrient(dataNutrients)
+            viewModel.updateNutrient(dataNutrients)
             ChangeData()
         }
         binding.progressBar.visibility = View.GONE
