@@ -18,6 +18,6 @@ class MainActivity : AppCompatActivity() {
         Glide.with(this).load(R.drawable.capstonelogo).into(binding.imageView2)
         Handler(mainLooper).postDelayed({
             startActivity(Intent(this, GetStartedHomeActivity::class.java))
-            finish()}, 5000)
+            finish()}, 8000)
     }
 }
