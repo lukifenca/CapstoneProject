@@ -7,6 +7,99 @@
     android:background="#3c415f"
     tools:context=".ActivityTakePhoto">
 
+    <LinearLayout
+        android:id="@+id/mykonten"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="300dp"
+        android:background="@drawable/bgkonten"
+        android:elevation="4dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txtEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="serif"
+            android:text="Masukkan Berat Makanan Anda"
+            android:textAlignment="center"
+            android:textColor="#3c415f"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/et1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/rounded_edit_text"
+            android:ems="10"
+            android:fontFamily="serif"
+            android:hint="500(gram)"
+            android:inputType="number"
+            android:paddingLeft="10dp"
+            android:paddingEnd="10dp" />
+
+        <Button
+            android:id="@+id/btnConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="24dp"
+            android:backgroundTint="#3c415f"
+            android:fontFamily="serif"
+            android:text="Confirm"
+            android:textAlignment="viewStart"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/imagetemp"
+        android:layout_width="78dp"
+        android:layout_height="77dp"
+        android:layout_marginTop="250dp"
+        android:background="@drawable/corner_image"
+        android:elevation="4dp"
+        app:layout_anchor="@+id/mykonten"
+        app:layout_anchorGravity="top|center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/locicon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="4dp"
+            android:src="@drawable/logo"
+            app:layout_anchorGravity="top|center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/overbox"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/overbox"
+        android:elevation="3dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </LinearLayout>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
@@ -23,16 +116,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:maxImageSize="12dp"
         app:tint="@null" />
-
-    <ImageView
-        android:id="@+id/gambarHasil"
-        android:layout_width="match_parent"
-        android:layout_height="246dp"
-        android:scaleType="fitXY"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/pizza" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -934,5 +1017,15 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
+
+    <ImageView
+        android:id="@+id/gambarHasil"
+        android:layout_width="match_parent"
+        android:layout_height="246dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pizza" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -51,7 +51,7 @@
             android:ems="10"
             android:fontFamily="serif"
             android:hint="Text 1"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:paddingLeft="10dp"
             android:paddingEnd="10dp" />
 
@@ -64,7 +64,7 @@
             android:ems="10"
             android:fontFamily="serif"
             android:hint="Text 2"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:paddingLeft="10dp"
             android:paddingEnd="10dp" />
 
@@ -77,7 +77,7 @@
             android:ems="10"
             android:fontFamily="serif"
             android:hint="Text 3"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:paddingLeft="10dp"
             android:paddingEnd="10dp" />
 

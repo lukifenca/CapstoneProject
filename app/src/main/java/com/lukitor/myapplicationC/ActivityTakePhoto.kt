@@ -28,6 +28,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.content.FileProvider
+import androidx.core.view.ViewCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.lukitor.myapplicationC.data.room.entity.Nutrients
@@ -45,7 +46,6 @@ import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.math.log
 import kotlin.math.roundToInt
 
 
@@ -53,6 +53,10 @@ class ActivityTakePhoto : AppCompatActivity() {
     var maxGaram: Int = 5000; var maxGula: Int = 50; var maxLemak: Int = 67; var maxKalori: Int = 0;
     var dailyGaram: Int = 0; var dailyGula: Int = 0; var dailyLemak: Int = 0; var dailyKalori: Int = 0;
     var tempGaram: Int = 0; var tempGula: Int = 0; var tempLemak: Int = 0; var tempKalori: Int = 0;
+    private lateinit var fromsmall: Animation
+    private lateinit var fromnothing: Animation
+    private lateinit var foricon: Animation
+    private lateinit var togo: Animation
 
     //buat hitung perbandingan
     var measurement:Int=0; var perbandingan:Int=0;
@@ -86,7 +90,31 @@ class ActivityTakePhoto : AppCompatActivity() {
         classifier = Classifier(assets, mModelPath, mLabelPath, mInputSize)
     }
 
-
+    fun anim(){
+        fromsmall = AnimationUtils.loadAnimation(this,R.anim.fromsmall)
+        fromnothing = AnimationUtils.loadAnimation(this,R.anim.fromnothing)
+        foricon = AnimationUtils.loadAnimation(this,R.anim.foricon)
+        togo = AnimationUtils.loadAnimation(this,R.anim.togo)
+        binding.mykonten.alpha = 0f
+        binding.overbox.alpha = 0f
+        binding.imagetemp.visibility = View.GONE
+    }
+    fun modalAnim(){
+        binding.imagetemp.visibility = View.VISIBLE
+        binding.imagetemp.startAnimation(foricon)
+        binding.overbox.alpha = 1f
+        binding.overbox.startAnimation(fromnothing)
+        binding.mykonten.alpha = 1f
+        binding.mykonten.startAnimation(fromsmall)
+    }
+    fun removeModalAnim(){
+        binding.overbox.startAnimation(togo)
+        binding.imagetemp.startAnimation(togo)
+        binding.mykonten.startAnimation(togo)
+        binding.imagetemp.visibility = View.GONE
+        ViewCompat.animate(binding.mykonten).setStartDelay(1000).alpha(0f).start()
+        ViewCompat.animate(binding.overbox).setStartDelay(1000).alpha(0f).start()
+    }
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,6 +122,7 @@ class ActivityTakePhoto : AppCompatActivity() {
         setContentView(binding.root)
 
         initClassifier()
+        anim()
         binding.layoutHasil.visibility = View.GONE
         tempUri=null
         val anim:Animation = AnimationUtils.loadAnimation(this,R.anim.fromsmall)
@@ -150,6 +179,10 @@ class ActivityTakePhoto : AppCompatActivity() {
             }
         }
         binding.btnPredict.setOnClickListener{
+            modalAnim()
+        }
+        binding.btnConfirm.setOnClickListener{
+            removeModalAnim()
             var bitmapss = drawableToBitmap(binding.gambarHasil.drawable)
             val result=classifier.recognizeImage(bitmapss!!)
             if(result.isEmpty()){
@@ -169,13 +202,14 @@ class ActivityTakePhoto : AppCompatActivity() {
                 else if(namamakanan=="pancakes")namamakanan="pancakes gula"
                 else if(namamakanan=="waffles")namamakanan="waffle"
                 else if(namamakanan=="onion rings")namamakanan="onion ring carl"
+                userInputGram = binding.et1.text.toString().toInt()
                 callApi(namamakanan)
                 binding.layoutHasil.visibility = View.VISIBLE
                 binding.layoutHasil.startAnimation(anim)
                 binding.txtHasilFoodName.text=result[0].title
             }
+            binding.et1.setText("")
         }
-
         binding.btnConfFood.setOnClickListener{
             AlertDialog.Builder(this)
                 .setTitle("Confirm")
