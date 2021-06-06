@@ -8,7 +8,6 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
@@ -31,31 +30,21 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.lukitor.myapplicationC.data.room.database.UserDatabase
 import com.lukitor.myapplicationC.data.room.entity.Nutrients
-import com.lukitor.myapplicationC.data.room.entity.Users
 import com.lukitor.myapplicationC.databinding.ActivityTakePhotoBinding
 import com.lukitor.myapplicationC.retrofit.ApiConfig
-import com.lukitor.myapplicationC.retrofit.NutrientResponse
 import com.lukitor.myapplicationC.retrofit.NutrientResponses
-import com.lukitor.myapplicationC.retrofit.ResponseApiModel
 import com.lukitor.myapplicationC.viewmodel.UserViewModel
 import com.lukitor.myapplicationC.viewmodel.ViewModelFactory
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import okhttp3.RequestBody.Companion.asRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
-import java.util.concurrent.Executors
 import kotlin.math.roundToInt
 
 
@@ -180,23 +169,26 @@ class ActivityTakePhoto : AppCompatActivity() {
         }
 
         binding.btnConfFood.setOnClickListener{
+            var status = false
             AlertDialog.Builder(this)
                 .setTitle("Confirm")
                 .setMessage("Apakah Deteksi Makanan Sudah Benar ?")
                 .setCancelable(false)
                 .setPositiveButton("Yes") {
                         dialog: DialogInterface, _: Int ->
-
                     UpdateData()
-                    var intentt=Intent(this,UserActivity::class.java)
-                    startActivity(intentt)
                     finish()
+                    overridePendingTransition(R.transition.nothing,R.transition.bottom_down)
                 }
                 .setNegativeButton("No") {
                         dialog: DialogInterface, _: Int ->
                     dialog.dismiss()
                 }
                 .show()
+            if (status){
+//                var intentt=Intent(this,UserActivity::class.java)
+//                startActivity(intentt)
+            }
         }
     }
 
