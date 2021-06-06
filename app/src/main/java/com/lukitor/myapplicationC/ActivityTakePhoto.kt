@@ -2,12 +2,15 @@ package com.lukitor.myapplicationC
 
 import android.Manifest
 import android.app.Activity
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
@@ -24,6 +27,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -76,6 +80,9 @@ class ActivityTakePhoto : AppCompatActivity() {
         private const val MY_CAMERA_PERMISSION_CODE = 111
         private const val CAMERA_REQUEST = 1888
         private const val GALLERY_REQUEST = 1010
+        private const val NOTIFICATION_ID = 1
+        private const val CHANNEL_ID = "channel_01"
+        private const val CHANNEL_NAME = "Eunonia channel"
     }
 
     private fun initClassifier() {
@@ -103,8 +110,6 @@ class ActivityTakePhoto : AppCompatActivity() {
         }
         binding.btnBack.setOnClickListener{view -> finish()
             overridePendingTransition(R.transition.nothing,R.transition.bottom_down)}
-//        val filename = "label.txt"
-//        val labels = application.assets.open(filename).bufferedReader().use { it.readText() }.split("\n")
 
         binding.btnGallery.setOnClickListener{
             var intent=Intent(Intent.ACTION_GET_CONTENT)
@@ -365,9 +370,18 @@ class ActivityTakePhoto : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     fun UpdateData(){
         var countKalori :Int  = dailyKalori+tempKalori
+        if(countKalori>maxKalori)sendNotification("Kalori",1)
+
         var countGula :Int  = dailyGula+tempGula
+        Log.d("Notif","Daily Gula :$countGula - Max Gula : {$maxGula}")
+        if(countGula > maxGula)sendNotification("Gula",2)
+
         var countGaram :Int  = dailyGaram+tempGaram
+        if(countGaram>maxGaram)sendNotification("Sodium",3)
+
         var countLemak :Int  = dailyLemak+tempLemak
+        if(countLemak>maxLemak)sendNotification("Lemak",4)
+
         val current = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         val formatted = current.format(formatter)
@@ -375,5 +389,27 @@ class ActivityTakePhoto : AppCompatActivity() {
         val factory = ViewModelFactory.getInstance(application)
         viewModel = ViewModelProvider(this, factory)[UserViewModel::class.java]
         viewModel.updateNutrient(dataNutrients)
+    }
+
+    fun sendNotification(Jenis:String, jenisID:Int) {
+        Log.d("Notif","Masuk $Jenis")
+        val mNotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val mBuilder = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setSmallIcon(R.drawable.notification_alert)
+            .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.notification_alert))
+            .setContentTitle("Nutrisi Harian Melebihi Rekomendasi Harian")
+            .setContentText("$Jenis anda melebih batas harian !")
+            .setAutoCancel(true)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            /* Create or update. */
+            val channel = NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT)
+            channel.description = CHANNEL_NAME
+            mBuilder.setChannelId(CHANNEL_ID)
+            mNotificationManager.createNotificationChannel(channel)
+        }
+
+        val notification = mBuilder.build()
+        mNotificationManager.notify(jenisID, notification)
     }
 }
