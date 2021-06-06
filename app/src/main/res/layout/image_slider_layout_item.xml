@@ -85,25 +85,29 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="44dp"
                 android:layout_marginTop="428dp"
+                android:layout_marginEnd="45dp"
                 android:fontFamily="serif"
                 android:text="3. Edit Data Datamu jika diperlukan"
                 android:textColor="#3c415f"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ss1"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textView14"
-                android:layout_width="350dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="29dp"
                 android:fontFamily="serif"
                 android:text="4. Foto Makananmu untuk mengetahui kandungan gizinya "
                 android:textColor="#3c415f"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ss3" />
 
@@ -113,11 +117,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="48dp"
                 android:layout_marginTop="236dp"
+                android:layout_marginEnd="41dp"
                 android:fontFamily="serif"
                 android:text="2. Monitor Data Kesehatanmu"
                 android:textColor="#3c415f"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ss1"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -153,15 +159,17 @@
 
             <TextView
                 android:id="@+id/textView8"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="44dp"
+                android:layout_marginStart="45dp"
                 android:layout_marginTop="64dp"
+                android:layout_marginEnd="32dp"
                 android:fontFamily="serif"
-                android:text="1. Isi Form Data Dirimu"
+                android:text="1. Isi Form Data Dirimu asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd"
                 android:textColor="#3c415f"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ss1"
                 app:layout_constraintTop_toTopOf="parent" />
 

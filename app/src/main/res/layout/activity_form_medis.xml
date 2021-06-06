@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
@@ -33,12 +33,14 @@
 
         android:id="@+id/txtTekananDarah"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="358dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:hint="Tekanan Darah Sys/Dia (mmHg)"
         app:errorEnabled="true"
         app:helperText="Contoh : 90/60"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView4">
 
@@ -55,12 +57,15 @@
 
         android:id="@+id/txtInputKolesterolLDL"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="358dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:hint="Kolesterol LDL(mg/dL)"
         app:errorEnabled="true"
         app:helperText="*Required"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtTekananDarah">
 
@@ -77,12 +82,14 @@
 
         android:id="@+id/txtInputKolesterolHDL"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="358dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:hint="Kolesterol HDL(mg/dL)"
         app:errorEnabled="true"
         app:helperText="*Required"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtInputKolesterolLDL">
 
@@ -99,12 +106,14 @@
 
         android:id="@+id/txtInputKolesterolTrigli"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="358dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:hint="Kolesterol Trigliserida(mg/dL)"
         app:errorEnabled="true"
         app:helperText="*Required"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtInputKolesterolHDL">
 
@@ -121,12 +130,14 @@
 
         android:id="@+id/txtInputGulaDarah"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="358dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:hint="Gula Darah Puasa (mg/dL)"
         app:errorEnabled="true"
         app:helperText="*Required"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtInputKolesterolTrigli">
 
