@@ -23,9 +23,10 @@ object ApiConfig {
 
     fun provideApiService(): ApiService {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://192.168.0.107/uploadimage/")//nyusull
+            .baseUrl("https://django-cloudrun-tvamzv2k3a-uc.a.run.app/")//nyusull
             .addConverterFactory(GsonConverterFactory.create())
-            .client(UnsafeOkHttpClient.getUnsafeOkHttpClient().build())
+//            .client(UnsafeOkHttpClient.getUnsafeOkHttpClient().build())
+            .client(provideOkHttpClient())
             .build()
         return retrofit.create(ApiService::class.java)
     }

@@ -21,7 +21,7 @@ import java.time.format.DateTimeFormatter
 class DashboardFragment : Fragment() {
 
     lateinit var binding:FragmentDashboardBinding
-    var maxGaram: Int = 5; var maxGula: Int = 50; var maxLemak: Int = 67; var maxKalori: Int = 0;
+    var maxGaram: Int = 5000; var maxGula: Int = 50; var maxLemak: Int = 67; var maxKalori: Int = 0;
     var dailyGaram: Int = 0; var dailyGula: Int = 0; var dailyLemak: Int = 0; var dailyKalori: Int = 0;
     private lateinit var data: Users
     private lateinit var dataNutrients: Nutrients

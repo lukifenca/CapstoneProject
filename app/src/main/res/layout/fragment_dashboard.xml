@@ -486,7 +486,7 @@
                             android:layout_marginStart="5dp"
                             android:layout_marginTop="5dp"
                             android:fontFamily="serif"
-                            android:text="gram"
+                            android:text="mg"
                             android:textColor="#000000"
                             android:textSize="14sp"
                             app:layout_constraintStart_toEndOf="@+id/txtDashboardGaram"

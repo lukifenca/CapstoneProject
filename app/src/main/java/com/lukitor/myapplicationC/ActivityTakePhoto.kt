@@ -3,6 +3,7 @@ package com.lukitor.myapplicationC
 import android.Manifest
 import android.app.Activity
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
@@ -21,13 +22,18 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.lukitor.myapplicationC.data.room.database.UserDatabase
 import com.lukitor.myapplicationC.data.room.entity.Nutrients
+import com.lukitor.myapplicationC.data.room.entity.Users
 import com.lukitor.myapplicationC.databinding.ActivityTakePhotoBinding
 import com.lukitor.myapplicationC.retrofit.ApiConfig
+import com.lukitor.myapplicationC.retrofit.NutrientResponse
+import com.lukitor.myapplicationC.retrofit.NutrientResponses
 import com.lukitor.myapplicationC.retrofit.ResponseApiModel
 import com.lukitor.myapplicationC.viewmodel.UserViewModel
 import com.lukitor.myapplicationC.viewmodel.ViewModelFactory
@@ -45,10 +51,12 @@ import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
+import java.util.concurrent.Executors
+import kotlin.math.roundToInt
 
 
 class ActivityTakePhoto : AppCompatActivity() {
-    var maxGaram: Int = 5; var maxGula: Int = 50; var maxLemak: Int = 67; var maxKalori: Int = 0;
+    var maxGaram: Int = 5000; var maxGula: Int = 50; var maxLemak: Int = 67; var maxKalori: Int = 0;
     var dailyGaram: Int = 0; var dailyGula: Int = 0; var dailyLemak: Int = 0; var dailyKalori: Int = 0;
     var tempGaram: Int = 0; var tempGula: Int = 0; var tempLemak: Int = 0; var tempKalori: Int = 0;
     private lateinit var viewModel: UserViewModel
@@ -75,6 +83,7 @@ class ActivityTakePhoto : AppCompatActivity() {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTakePhotoBinding.inflate(layoutInflater)
@@ -152,57 +161,38 @@ class ActivityTakePhoto : AppCompatActivity() {
             else{
                 Log.d("Classifier",result[0].title)
                 binding.txtApakahMakanan.visibility=View.GONE
-                ChangeData()
+                var namamakanan = result[0].title
+                if(namamakanan=="bakso")namamakanan="meatballs"
+                else if(namamakanan=="donuts")namamakanan="donut gula"
+                else if(namamakanan=="pancakes")namamakanan="pancakes gula"
+                else if(namamakanan=="waffles")namamakanan="waffle"
+                else if(namamakanan=="onion rings")namamakanan="onion ring carl"
+                callApi(namamakanan)
                 binding.layoutHasil.visibility = View.VISIBLE
                 binding.layoutHasil.startAnimation(anim)
                 binding.txtHasilFoodName.text=result[0].title
             }
-
-
-
-
-
-////            sendPhoto(tempUri,filegambarcamera)
-////            filegambarcamera=null
-//            var bitmap = drawableToBitmap(binding.gambarHasil.drawable)
-////            var resized=Bitmap.createScaledBitmap(bitmap!!,299,299,true)
-//            var resized=Bitmap.createScaledBitmap(bitmap!!,299,299,false)
-//
-//            var classifier=Classifier(assets,"model.tflie","label.txt",299)
-//            val result=classifier.recognizeImage(bitmap)
-//
-//
-//            val model = Model.newInstance(this)
-//
-////            Log.d("Model",resized.width.toString())
-//
-//            // Creates inputs for reference.
-//
-//            val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 299, 299, 3), DataType.FLOAT32)
-//            var tensorImage= TensorImage(DataType.FLOAT32)
-//            tensorImage.load(resized)
-//            var byteBuffer1 = tensorImage.buffer
-//
-//
-//
-//            inputFeature0.loadBuffer(byteBuffer1)
-//
-//            // Runs model inference and gets result.
-//            val outputs = model.process(inputFeature0)
-//            val outputFeature0 = outputs.outputFeature0AsTensorBuffer
-//
-//            var max=getmax(outputFeature0.floatArray)
-//
-//            binding.txtHasilPredict.text=labels[max]
-//
-//            // Releases model resources if no longer used.
-//            model.close()
-//            ChangeData()
-//            binding.layoutHasil.visibility = View.VISIBLE
-//            binding.layoutHasil.startAnimation(anim)
         }
 
+        binding.btnConfFood.setOnClickListener{
+            AlertDialog.Builder(this)
+                .setTitle("Confirm")
+                .setMessage("Apakah Deteksi Makanan Sudah Benar ?")
+                .setCancelable(false)
+                .setPositiveButton("Yes") {
+                        dialog: DialogInterface, _: Int ->
 
+                    UpdateData()
+                    var intentt=Intent(this,UserActivity::class.java)
+                    startActivity(intentt)
+                    finish()
+                }
+                .setNegativeButton("No") {
+                        dialog: DialogInterface, _: Int ->
+                    dialog.dismiss()
+                }
+                .show()
+        }
     }
 
     override fun onRequestPermissionsResult(
@@ -231,19 +221,6 @@ class ActivityTakePhoto : AppCompatActivity() {
             if(data!=null){
                 binding.gambarHasil.setImageURI(data?.data)
             }
-
-//            var uri: Uri? = data?.data
-//            if (uri != null) {
-//                bitmap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-//                    val src: ImageDecoder.Source = ImageDecoder.createSource(contentResolver, uri!!)
-//                    ImageDecoder.decodeBitmap(src)
-//
-//                } else {
-//                    @Suppress("DEPRECATION")
-//                    MediaStore.Images.Media.getBitmap(contentResolver, uri)
-//                }
-//                tempUri = getImageUri(this@ActivityTakePhoto,bitmap)!!
-//            }
         }
 
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
@@ -262,69 +239,38 @@ class ActivityTakePhoto : AppCompatActivity() {
     }
 
 
-    private fun sendPhoto(tempoUri : Uri?,fileCamera : File?){
-        var file:File?
-        if(fileCamera==null)file = File(getRealPathFromURI(tempoUri))
-        else  file=fileCamera
-        val reqBody: RequestBody = file.asRequestBody("image/*".toMediaType())
-        val partImage: MultipartBody.Part =
-            MultipartBody.Part.createFormData("imageupload", file.name, reqBody)
+    private fun callApi(foodName:String){
         val api = ApiConfig.provideApiService()
-        val upload :Call<ResponseApiModel> = api.uploadImage(partImage)
-        upload.enqueue(object : Callback<ResponseApiModel> {
+        val upload :Call<NutrientResponses> = api.getNutrients(foodName)
+        upload.enqueue(object : Callback<NutrientResponses> {
             override fun onResponse(
-                call: Call<ResponseApiModel>,
-                response: Response<ResponseApiModel>
+                call: Call<NutrientResponses>,
+                response: Response<NutrientResponses>
             ) {
-                if (response.body()!!.kode=="1") {
-                    Toast.makeText(
-                        this@ActivityTakePhoto,
-                        response.body()!!.pesan,
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    Toast.makeText(
-                        this@ActivityTakePhoto,
-                        response.body()!!.pesan,
-                        Toast.LENGTH_SHORT
-                    ).show()
+                if (response.body()!=null) {
+                    binding.txtNutritionKalori.text=response.body()!!.calories
+                    tempKalori=response.body()!!.calories!!.toFloat().roundToInt()
+                    binding.txtNutritionGula.text=response.body()!!.sugar
+                    tempGula=response.body()!!.sugar!!.toFloat().roundToInt()
+                    binding.txtNutritionLemak.text=response.body()!!.fat
+                    tempLemak=response.body()!!.fat!!.toFloat().roundToInt()
+                    binding.txtNutritionSodium.text=response.body()!!.sodium
+                    tempGaram=response.body()!!.sodium!!.toFloat().roundToInt()
+                    ChangeData()
+//                    Toast.makeText(
+//                        this@ActivityTakePhoto,
+//                        "Berhasil Response",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
                 }
             }
 
-            override fun onFailure(call: Call<ResponseApiModel>, t: Throwable) {
+            override fun onFailure(call: Call<NutrientResponses>, t: Throwable) {
                 Log.d("RETRO", "ON FAILURE : " + t.message)
             }
         })
     }
 
-    fun getImageUri(inContext: Context, inImage: Bitmap): Uri? {
-        val bytes = ByteArrayOutputStream()
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-        val path = MediaStore.Images.Media.insertImage(
-            inContext.getContentResolver(),
-            inImage,
-            "Title",
-            null
-        )
-        return Uri.parse(path)
-    }
-    fun getRealPathFromURI(uri: Uri?): String {
-        var path = ""
-        if (this@ActivityTakePhoto.contentResolver != null) {
-            val cursor: Cursor? =
-                this@ActivityTakePhoto.contentResolver.query(uri!!, null, null, null, null)
-            if (cursor != null) {
-                cursor.moveToFirst()
-                val idx: Int = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA)
-                if(idx!=-1){
-                    path = cursor.getString(idx)
-                    cursor.close()
-                }
-
-            }
-        }
-        return path
-    }
 
 
     @Throws(IOException::class)
@@ -344,20 +290,6 @@ class ActivityTakePhoto : AppCompatActivity() {
         return image_
     }
 
-    fun getmax(arr:FloatArray):Int {
-        var ind =0
-        var min = 0.0f
-        for (i in 0..19)
-        {
-            println(i.toString() +". " + arr[i])
-            if(arr[i]>min){
-                ind=i
-                min=arr[i]
-            }
-        }
-        return ind
-
-    }
 
     fun drawableToBitmap(drawable: Drawable): Bitmap? {
         if (drawable is BitmapDrawable) {

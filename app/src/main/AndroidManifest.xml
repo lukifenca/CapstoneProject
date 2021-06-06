@@ -33,7 +33,9 @@
                 android:resource="@xml/provide_paths" />
         </provider>
         <activity android:name=".ActivityTakePhoto"
-            android:theme="@style/SplassScreenCustom1"></activity>
+            android:theme="@style/SplassScreenCustom1">
+
+        </activity>
         <activity android:name=".ActivityFormMedis" />
         <activity
             android:name=".ProfileActivity"
@@ -68,6 +70,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
         <meta-data
