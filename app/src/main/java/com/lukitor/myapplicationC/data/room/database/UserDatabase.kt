@@ -6,6 +6,8 @@ import androidx.room.Room.databaseBuilder
 import androidx.room.RoomDatabase
 import com.lukitor.myapplicationC.data.room.entity.Nutrients
 import com.lukitor.myapplicationC.data.room.entity.Users
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 
 @Database(entities = [Users::class, Nutrients::class],version = 1,exportSchema = false)
 abstract class UserDatabase : RoomDatabase(){
@@ -15,6 +17,8 @@ abstract class UserDatabase : RoomDatabase(){
         @Volatile
         private var INSTANCE: UserDatabase? = null
 
+        val passphrase: ByteArray = SQLiteDatabase.getBytes("Eunonia".toCharArray())
+        val factory = SupportFactory(passphrase)
         @JvmStatic
         fun getInstance(context: Context): UserDatabase =
            INSTANCE ?: synchronized(this) {
@@ -23,7 +27,7 @@ abstract class UserDatabase : RoomDatabase(){
                     UserDatabase::class.java,
                     "Users.db"
                 )
-                    .allowMainThreadQueries()
+                    .allowMainThreadQueries().openHelperFactory(factory)
                     .build()
                 INSTANCE = instance
                 instance
