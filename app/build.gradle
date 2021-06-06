@@ -17,6 +17,8 @@ android {
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
 
+        archivesBaseName = "Eunonia Your Health Inspector"
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     lintOptions {
