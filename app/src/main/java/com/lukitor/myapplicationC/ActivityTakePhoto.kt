@@ -45,6 +45,7 @@ import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.math.log
 import kotlin.math.roundToInt
 
 
@@ -52,6 +53,13 @@ class ActivityTakePhoto : AppCompatActivity() {
     var maxGaram: Int = 5000; var maxGula: Int = 50; var maxLemak: Int = 67; var maxKalori: Int = 0;
     var dailyGaram: Int = 0; var dailyGula: Int = 0; var dailyLemak: Int = 0; var dailyKalori: Int = 0;
     var tempGaram: Int = 0; var tempGula: Int = 0; var tempLemak: Int = 0; var tempKalori: Int = 0;
+
+    //buat hitung perbandingan
+    var measurement:Int=0; var perbandingan:Int=0;
+
+    //berat makanan inputan user
+    var userInputGram:Int=500
+
     private lateinit var viewModel: UserViewModel
     lateinit var binding:ActivityTakePhotoBinding
     lateinit var bitmap: Bitmap
@@ -240,14 +248,25 @@ class ActivityTakePhoto : AppCompatActivity() {
                 response: Response<NutrientResponses>
             ) {
                 if (response.body()!=null) {
-                    binding.txtNutritionKalori.text=response.body()!!.calories
+//                    binding.txtNutritionKalori.text=response.body()!!.calories
                     tempKalori=response.body()!!.calories!!.toFloat().roundToInt()
-                    binding.txtNutritionGula.text=response.body()!!.sugar
+//                    binding.txtNutritionGula.text=response.body()!!.sugar
                     tempGula=response.body()!!.sugar!!.toFloat().roundToInt()
-                    binding.txtNutritionLemak.text=response.body()!!.fat
+//                    binding.txtNutritionLemak.text=response.body()!!.fat
                     tempLemak=response.body()!!.fat!!.toFloat().roundToInt()
-                    binding.txtNutritionSodium.text=response.body()!!.sodium
+//                    binding.txtNutritionSodium.text=response.body()!!.sodium
                     tempGaram=response.body()!!.sodium!!.toFloat().roundToInt()
+
+                    measurement=response.body()!!.metricServingAmount!!.toFloat().roundToInt()
+                    hitungperbandingan()
+                    var namatemp=binding.txtHasilFoodName.text
+                    binding.txtHasilFoodName.text = "$namatemp (${userInputGram.toString()}g)"
+
+                    binding.txtNutritionKalori.text=tempKalori.toString()
+                    binding.txtNutritionGula.text=tempGula.toString()
+                    binding.txtNutritionLemak.text=tempLemak.toString()
+                    binding.txtNutritionSodium.text=tempGaram.toString()
+
                     ChangeData()
 //                    Toast.makeText(
 //                        this@ActivityTakePhoto,
@@ -398,5 +417,21 @@ class ActivityTakePhoto : AppCompatActivity() {
 
         val notification = mBuilder.build()
         mNotificationManager.notify(jenisID, notification)
+    }
+
+    //buat hitung perbandingan
+    fun hitungperbandingan(){
+        perbandingan=(userInputGram/measurement).toFloat().roundToInt()
+//        Log.d("hasil",perbandingan.toString())
+        updateNutrientsBanding()
+    }
+
+
+    //buat update hasil data temp setelah dapet perbandingan
+    fun updateNutrientsBanding(){
+        tempKalori*=perbandingan
+        tempGula*=perbandingan
+        tempLemak*=perbandingan
+        tempGaram*=perbandingan
     }
 }
