@@ -169,7 +169,6 @@ class ActivityTakePhoto : AppCompatActivity() {
         }
 
         binding.btnConfFood.setOnClickListener{
-            var status = false
             AlertDialog.Builder(this)
                 .setTitle("Confirm")
                 .setMessage("Apakah Deteksi Makanan Sudah Benar ?")
@@ -185,10 +184,6 @@ class ActivityTakePhoto : AppCompatActivity() {
                     dialog.dismiss()
                 }
                 .show()
-            if (status){
-//                var intentt=Intent(this,UserActivity::class.java)
-//                startActivity(intentt)
-            }
         }
     }
 
