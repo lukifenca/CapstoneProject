@@ -21,8 +21,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="https://ibb.co/Z15yczp" alt="Logo" width="200" height="200">
+  <a href="https://github.com/lukifenca/CapstoneProject">
+    <img src="https://i.ibb.co/Tq6zPMx/image-removebg-preview.png" alt="Logo" width="200" height="200">
   </a>
 
   <h3 align="center">Health Inspector</h3>
