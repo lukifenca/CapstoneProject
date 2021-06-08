@@ -83,17 +83,17 @@
     <tr>
         <td>
           <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <img src="https://i.ibb.co/7NCZj7X/image.png" alt="Logo" width="300" height="600">
+          <img src="https://i.ibb.co/7NCZj7X/image.png" alt="Logo" height="600">
           <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         </td>
         <td>
           <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <img src="https://i.ibb.co/FwpyBnX/image.png" alt="Logo" width="300" height="600">
+          <img src="https://i.ibb.co/FwpyBnX/image.png" alt="Logo"  height="600">
           <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
       </td>
       <td>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <img src="https://i.ibb.co/10MMfKS/image.png" alt="Logo" width="300" height="600">
+        <img src="https://i.ibb.co/10MMfKS/image.png" alt="Logo"height="600">
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
       </td>
     </tr>
@@ -108,17 +108,17 @@
     <tr>
         <td>
           <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <img src="https://i.ibb.co/PQqgqKG/image.png" alt="Logo" width="300" height="600">
+          <img src="https://i.ibb.co/PQqgqKG/image.png" alt="Logo" height="600">
           <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         </td>
         <td>
           <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <img src="https://i.ibb.co/6H9fSBZ/image.png" alt="Logo" width="300" height="600">
+          <img src="https://i.ibb.co/6H9fSBZ/image.png" alt="Logo" height="600">
           <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
       </td>
       <td>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <img src="https://i.ibb.co/Xj8jg2S/image.png" alt="Logo" width="300" height="height="600">
+        <img src="https://i.ibb.co/Xj8jg2S/image.png" alt="Logo"  height="600">
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
       </td>
     </tr>
