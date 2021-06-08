@@ -21,7 +21,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/lukifenca/CapstoneProject">
+  <a href="https://github.com/othneildrew/Best-README-Template">
     <img src="https://i.ibb.co/Tq6zPMx/image-removebg-preview.png" alt="Logo" width="200" height="200">
   </a>
 
@@ -99,7 +99,31 @@
     </tr>
 </table>
     
-changes in lifestyle cause disease patterns to change from infectious and malnutrition to degenerative diseases. Degenerative diseases or simply referred to as Non-Communicable Diseases (PTM or Penyakit Tidak Menular) arise because of the transition of unhealthy modern human behavior (Yuliantini, et al, 2015). This can occur starting from changes in economic patterns towards industrialization which have an impact on changes in environmental patterns around society; the impact of changes in environmental patterns causes changes in the quality of health which can be viewed from the form of environmental sanitation and hygiene.
+<table>
+    <tr>
+        <td><strong>     Splash Screen          </strong></td>
+        <td><strong>  Top Layout     </strong></td>
+      <td> <strong>      Bottom Layout</strong> </td>
+    </tr>
+    <tr>
+        <td>
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <img src="images/splashscreen.png" alt="Logo" width="350" height="546.5">
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        </td>
+        <td>
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <img src="images/top_layout.png" alt="Logo" width="350" height="546.5">
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      </td>
+      <td>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <img src="images/bottom_layout_crop.png" alt="Logo" width="350" height="546.5">
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      </td>
+    </tr>
+</table>
+Changes in lifestyle cause disease patterns to change from infectious and malnutrition to degenerative diseases. Degenerative diseases or simply referred to as Non-Communicable Diseases (PTM or Penyakit Tidak Menular) arise because of the transition of unhealthy modern human behavior (Yuliantini, et al, 2015). This can occur starting from changes in economic patterns towards industrialization which have an impact on changes in environmental patterns around society; the impact of changes in environmental patterns causes changes in the quality of health which can be viewed from the form of environmental sanitation and hygiene.
 
 Your Health Inspector is a service that seeks to be a reminder and education of nutrition for the food consumed by many people as a preventive measure against unhealthy consumption patterns; poor diet, or irregular eating patterns
 
