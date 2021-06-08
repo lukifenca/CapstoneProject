@@ -21,7 +21,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  <a href="https://github.com/lukifenca/CapstoneProject/blob/master/README.md">
     <img src="https://i.ibb.co/Tq6zPMx/image-removebg-preview.png" alt="Logo" width="200" height="200">
   </a>
 
