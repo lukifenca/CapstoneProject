@@ -77,23 +77,23 @@
 <table>
     <tr>
         <td><strong>     Splash Screen          </strong></td>
-        <td><strong>  Top Layout     </strong></td>
-      <td> <strong>      Bottom Layout</strong> </td>
+        <td><strong>  Get Started     </strong></td>
+      <td> <strong>      Input Data Form</strong> </td>
     </tr>
     <tr>
         <td>
           <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <img src="images/splashscreen.png" alt="Logo" width="350" height="546.5">
+          <img src="https://i.ibb.co/7NCZj7X/image.png" alt="Logo" width="350" height="546.5">
           <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         </td>
         <td>
           <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <img src="images/top_layout.png" alt="Logo" width="350" height="546.5">
+          <img src="https://i.ibb.co/FwpyBnX/image.png" alt="Logo" width="350" height="546.5">
           <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
       </td>
       <td>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <img src="images/bottom_layout_crop.png" alt="Logo" width="350" height="546.5">
+        <img src="https://i.ibb.co/10MMfKS/image.png" alt="Logo" width="350" height="546.5">
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
       </td>
     </tr>
@@ -101,24 +101,24 @@
     
 <table>
     <tr>
-        <td><strong>     Splash Screen          </strong></td>
-        <td><strong>  Top Layout     </strong></td>
-      <td> <strong>      Bottom Layout</strong> </td>
+        <td><strong>     Dashboard          </strong></td>
+        <td><strong>  Upload Now     </strong></td>
+      <td> <strong>      Profile</strong> </td>
     </tr>
     <tr>
         <td>
           <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <img src="images/splashscreen.png" alt="Logo" width="350" height="546.5">
+          <img src="https://i.ibb.co/PQqgqKG/image.png" alt="Logo" width="350" height="546.5">
           <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         </td>
         <td>
           <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <img src="images/top_layout.png" alt="Logo" width="350" height="546.5">
+          <img src="https://i.ibb.co/6H9fSBZ/image.png" alt="Logo" width="350" height="546.5">
           <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
       </td>
       <td>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <img src="images/bottom_layout_crop.png" alt="Logo" width="350" height="546.5">
+        <img src="https://i.ibb.co/Xj8jg2S/image.png" alt="Logo" width="350" height="546.5">
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
       </td>
     </tr>
@@ -146,7 +146,7 @@ Application services that seek to be a reminder of food have existed before, suc
 
 ### Installation
 
-1. Download the APK [here](https://drive.google.com/file/d/1OiC0V0IcgANB7GQQTsKQvxEl9nTka8l1/view?usp=sharing)
+1. Download the APK [here](https://drive.google.com/file/d/1DkE5chjMXnZ3mBiX6eGTsS_Qs0KoSVJ5/view?usp=sharing)
 2. Install the APK to your device
 
 
